@@ -132,7 +132,7 @@ namespace Dormitory.Dormitory_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[10];
+            _typeNameTable = new string[9];
             _typeNameTable[0] = "Dormitory.Checkbook";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
@@ -140,11 +140,10 @@ namespace Dormitory.Dormitory_XamlTypeInfo
             _typeNameTable[4] = "Dormitory.DormitoryInfo";
             _typeNameTable[5] = "Dormitory.Duty";
             _typeNameTable[6] = "Dormitory.MainPage";
-            _typeNameTable[7] = "Dormitory.Register";
-            _typeNameTable[8] = "Dormitory.Setting";
-            _typeNameTable[9] = "Dormitory.WriteJournal";
+            _typeNameTable[7] = "Dormitory.Setting";
+            _typeNameTable[8] = "Dormitory.WriteJournal";
 
-            _typeTable = new global::System.Type[10];
+            _typeTable = new global::System.Type[9];
             _typeTable[0] = typeof(global::Dormitory.Checkbook);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
@@ -152,9 +151,8 @@ namespace Dormitory.Dormitory_XamlTypeInfo
             _typeTable[4] = typeof(global::Dormitory.DormitoryInfo);
             _typeTable[5] = typeof(global::Dormitory.Duty);
             _typeTable[6] = typeof(global::Dormitory.MainPage);
-            _typeTable[7] = typeof(global::Dormitory.Register);
-            _typeTable[8] = typeof(global::Dormitory.Setting);
-            _typeTable[9] = typeof(global::Dormitory.WriteJournal);
+            _typeTable[7] = typeof(global::Dormitory.Setting);
+            _typeTable[8] = typeof(global::Dormitory.WriteJournal);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -193,9 +191,8 @@ namespace Dormitory.Dormitory_XamlTypeInfo
         private object Activate_4_DormitoryInfo() { return new global::Dormitory.DormitoryInfo(); }
         private object Activate_5_Duty() { return new global::Dormitory.Duty(); }
         private object Activate_6_MainPage() { return new global::Dormitory.MainPage(); }
-        private object Activate_7_Register() { return new global::Dormitory.Register(); }
-        private object Activate_8_Setting() { return new global::Dormitory.Setting(); }
-        private object Activate_9_WriteJournal() { return new global::Dormitory.WriteJournal(); }
+        private object Activate_7_Setting() { return new global::Dormitory.Setting(); }
+        private object Activate_8_WriteJournal() { return new global::Dormitory.WriteJournal(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -248,23 +245,16 @@ namespace Dormitory.Dormitory_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 7:   //  Dormitory.Register
+            case 7:   //  Dormitory.Setting
                 userType = new global::Dormitory.Dormitory_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_7_Register;
+                userType.Activator = Activate_7_Setting;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 8:   //  Dormitory.Setting
+            case 8:   //  Dormitory.WriteJournal
                 userType = new global::Dormitory.Dormitory_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_8_Setting;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 9:   //  Dormitory.WriteJournal
-                userType = new global::Dormitory.Dormitory_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_9_WriteJournal;
+                userType.Activator = Activate_8_WriteJournal;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;

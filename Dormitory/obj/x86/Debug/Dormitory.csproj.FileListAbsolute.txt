@@ -192,11 +192,6 @@ E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\o
 E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\obj\x86\Debug\LogIn.g.cs
 E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\obj\x86\Debug\LogIn.xaml
 E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\obj\x86\Debug\LogIn.xbf
-E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\bin\x86\Debug\Register.xbf
-E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\obj\x86\Debug\Register.g.i.cs
-E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\obj\x86\Debug\Register.g.cs
-E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\obj\x86\Debug\Register.xaml
-E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\obj\x86\Debug\Register.xbf
 E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\obj\x86\Debug\Checkbook.g.i.cs
 E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\obj\x86\Debug\Checkbook.g.cs
 E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\obj\x86\Debug\Duty.g.i.cs

@@ -7,19 +7,30 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.8,0.8" StartPoint="0.7,0.2">
+                <GradientStop Color="#75C4FF" Offset="0"/>
+                <GradientStop Color="#CDDBEA" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"
-              Height="480"
-              Width="1000"
-              Background="AliceBlue">
+              Height="336"
+              Width="800"
+              BorderThickness="2"
+              VerticalAlignment="Center" FocusVisualPrimaryBrush="#FFA6A3A3" FocusVisualSecondaryBrush="#99D1CDCD">
+            <Grid.Background>
+                <ImageBrush Stretch="Fill"
+                            ImageSource="Assets/background_login.jpg"/>
+            </Grid.Background>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="480"/>
+                <ColumnDefinition Width="328"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="1" Width="Auto" Height="Auto" Background="WhiteSmoke">
@@ -32,65 +43,95 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock
-                Grid.Row="0"
-                Text="宿舍宝"
-                FontSize="32"
-                Margin="24"/>
+                    Grid.Row="0"
+                    Text="宿舍宝"
+                    FontSize="32"
+                    Margin="24"/>
 
-                <Pivot Grid.Row="1">
+                <Pivot Grid.Row="1" Margin="12, 0, 12, 24">
+                    <PivotItem Header="登陆">
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                    
+                            <TextBox x:Name="account"
+                                     Grid.Row="0"
+                                     Width="280"
+                                     Height="Auto"
+                                     FontSize="16"
+                                     PlaceholderText="请输入账号"
+                                     Margin="0, 12, 0, 0"
+                                     HorizontalAlignment="Left"/>
 
+                            <PasswordBox x:Name="password"
+                                         Grid.Row="2"
+                                         Width="280"
+                                         Height="Auto"
+                                         FontSize="16"
+                                         PlaceholderText="请输入密码"
+                                         HorizontalAlignment="Left"
+                                         Margin="0, 12, 0, 0"/>
 
+                            <Button x:Name="forgetPassword"
+                                       Grid.Row="3"
+                                       HorizontalAlignment="Right"
+                                       Content="忘记密码?"
+                                       FontSize="8"/>
+
+                            <Button x:Name="logIn"
+                                    Grid.Row="4"
+                                    Grid.Column="0"
+                                    Width="140"
+                                    Height="36"
+                                    FontSize="16"
+                                    Content="登陆"
+                                    Margin="0, 24, 0, 0"/>
+                        </Grid>
+                    </PivotItem>
+
+                    <PivotItem Header="注册">
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBox x:Name="accountReg"
+                                     Grid.Row="0"
+                                     Width="280"
+                                     Height="Auto"
+                                     FontSize="16"
+                                     Margin="0, 12, 0, 0"
+                                     HorizontalAlignment="Left"
+                                     PlaceholderText="请设置账号"/>
+
+                            <PasswordBox x:Name="passwordReg"
+                                         Grid.Row="1"
+                                         Width="280"
+                                         Height="Auto"
+                                         FontSize="16"
+                                         PlaceholderText="请设置密码"
+                                         HorizontalAlignment="Left"
+                                         Margin="0, 12, 0, 0"/>
+
+                            <Button x:Name="register"
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Width="140"
+                                    Height="36"
+                                    FontSize="16"
+                                    Content="注册"
+                                    Margin="0, 24, 0, 0"/>
+                        </Grid>
+                    </PivotItem>
                 </Pivot>
-
-                <Grid Grid.Row="1" Margin="24">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <TextBox x:Name="account"
-                         Grid.Row="0"
-                         Width="432"
-                         Height="Auto"
-                         FontSize="24"
-                         PlaceholderText="请输入账号"
-                         HorizontalAlignment="Left"
-                         Margin="0, 24, 0, 0"/>
-
-                    <TextBlock x:Name="register"
-                               Grid.Row="1"
-                               HorizontalAlignment="Right"
-                               Text="没有账号?"
-                               FontSize="16"/>
-
-                    <PasswordBox x:Name="password"
-                         Grid.Row="2"
-                         Width="432"
-                         Height="Auto"
-                         FontSize="24"
-                         PlaceholderText="请输入密码"
-                         HorizontalAlignment="Left"
-                         Margin="0, 24, 0, 0"/>
-
-                    <TextBlock x:Name="forgetPassword"
-                               Grid.Row="3"
-                               HorizontalAlignment="Right"
-                               Text="忘记密码?"
-                               FontSize="16"/>
-                </Grid>
-
-                <Button x:Name="logIn"
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        Width="240"
-                        Height="56"
-                        FontSize="24"
-                        Content="登陆"
-                        Margin="24, 56, 24, 24"/>
             </Grid>
         </Grid>
     </Grid>

@@ -16,7 +16,7 @@
     <PackageRegistrationPath>
     </PackageRegistrationPath>
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
-    <RegisteredManifestChecksum>FF0B1651B9C177B4FD16DDB4197EB2EF209ECA1D99D8382D3FE8021BA2C38234</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>2EC69D7B8C4529929A9F633FA37B9F93B65FB96DADBB2E0580410C1E1C6D9B0E</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>03cda574-34c8-4492-8410-4247eb73d200_1.0.0.0_x86__g4wdvhp12jqtc</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>03cda574-34c8-4492-8410-4247eb73d200_g4wdvhp12jqtc!App</RegisteredUserModeAppID>
     <RegisteredPackageID>03cda574-34c8-4492-8410-4247eb73d200</RegisteredPackageID>
@@ -28,13 +28,13 @@
     <AppXManifest Include="E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-05-04T08:30:39.015</Modified>
+      <Modified>2017-05-05T14:58:43.227</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\bin\x86\Debug\Dormitory.exe">
       <PackagePath>entrypoint\Dormitory.exe</PackagePath>
-      <Modified>2017-05-04T08:30:37.963</Modified>
+      <Modified>2017-05-05T14:58:41.952</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\74132\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -448,6 +448,10 @@
       <PackagePath>System.Xml.XmlSerializer.dll</PackagePath>
       <Modified>2015-07-22T15:11:12.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\Assets\default.jpg">
+      <PackagePath>Assets\default.jpg</PackagePath>
+      <Modified>2017-05-04T15:51:25.056</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
       <Modified>2017-05-04T08:25:33.747</Modified>
@@ -488,7 +492,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\bin\x86\Debug\Dormitory.xr.xml">
       <PackagePath>Dormitory.xr.xml</PackagePath>
-      <Modified>2017-05-04T08:30:37.846</Modified>
+      <Modified>2017-05-05T14:58:41.696</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -497,11 +501,11 @@
     <AppxPackagedFile Include="E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-05-04T08:30:38.760</Modified>
+      <Modified>2017-05-05T14:58:42.779</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\bin\x86\Debug\Core\Dormitory.exe">
       <PackagePath>Dormitory.exe</PackagePath>
-      <Modified>2017-05-04T08:30:39.009</Modified>
+      <Modified>2017-05-05T14:58:43.220</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

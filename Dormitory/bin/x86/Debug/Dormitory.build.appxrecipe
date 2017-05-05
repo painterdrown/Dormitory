@@ -334,6 +334,9 @@
     <AppxPackagedFile Include="C:\Users\74132\.nuget\packages\System.Xml.XmlSerializer\4.0.10\lib\netcore50\System.Xml.XmlSerializer.dll">
       <PackagePath>System.Xml.XmlSerializer.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\Assets\default.jpg">
+      <PackagePath>Assets\default.jpg</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="E:\Workspace\Study\现代操作系统应用开发\Project1\Dormitory\Dormitory\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>

@@ -132,15 +132,29 @@ namespace Dormitory.Dormitory_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[3];
-            _typeNameTable[0] = "Dormitory.MainPage";
+            _typeNameTable = new string[10];
+            _typeNameTable[0] = "Dormitory.Checkbook";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[3] = "Windows.UI.Xaml.Controls.ComboBoxItem";
+            _typeNameTable[4] = "Dormitory.DormitoryInfo";
+            _typeNameTable[5] = "Dormitory.Duty";
+            _typeNameTable[6] = "Dormitory.MainPage";
+            _typeNameTable[7] = "Dormitory.Register";
+            _typeNameTable[8] = "Dormitory.Setting";
+            _typeNameTable[9] = "Dormitory.WriteJournal";
 
-            _typeTable = new global::System.Type[3];
-            _typeTable[0] = typeof(global::Dormitory.MainPage);
+            _typeTable = new global::System.Type[10];
+            _typeTable[0] = typeof(global::Dormitory.Checkbook);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[3] = typeof(global::Windows.UI.Xaml.Controls.ComboBoxItem);
+            _typeTable[4] = typeof(global::Dormitory.DormitoryInfo);
+            _typeTable[5] = typeof(global::Dormitory.Duty);
+            _typeTable[6] = typeof(global::Dormitory.MainPage);
+            _typeTable[7] = typeof(global::Dormitory.Register);
+            _typeTable[8] = typeof(global::Dormitory.Setting);
+            _typeTable[9] = typeof(global::Dormitory.WriteJournal);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -175,7 +189,13 @@ namespace Dormitory.Dormitory_XamlTypeInfo
             return -1;
         }
 
-        private object Activate_0_MainPage() { return new global::Dormitory.MainPage(); }
+        private object Activate_0_Checkbook() { return new global::Dormitory.Checkbook(); }
+        private object Activate_4_DormitoryInfo() { return new global::Dormitory.DormitoryInfo(); }
+        private object Activate_5_Duty() { return new global::Dormitory.Duty(); }
+        private object Activate_6_MainPage() { return new global::Dormitory.MainPage(); }
+        private object Activate_7_Register() { return new global::Dormitory.Register(); }
+        private object Activate_8_Setting() { return new global::Dormitory.Setting(); }
+        private object Activate_9_WriteJournal() { return new global::Dormitory.WriteJournal(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -187,9 +207,10 @@ namespace Dormitory.Dormitory_XamlTypeInfo
             switch (typeIndex)
             {
 
-            case 0:   //  Dormitory.MainPage
+            case 0:   //  Dormitory.Checkbook
                 userType = new global::Dormitory.Dormitory_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_0_MainPage;
+                userType.Activator = Activate_0_Checkbook;
+                userType.AddMemberName("SelectedComboBoxOption");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -201,16 +222,82 @@ namespace Dormitory.Dormitory_XamlTypeInfo
             case 2:   //  Windows.UI.Xaml.Controls.UserControl
                 xamlType = new global::Dormitory.Dormitory_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
+
+            case 3:   //  Windows.UI.Xaml.Controls.ComboBoxItem
+                xamlType = new global::Dormitory.Dormitory_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 4:   //  Dormitory.DormitoryInfo
+                userType = new global::Dormitory.Dormitory_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_4_DormitoryInfo;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 5:   //  Dormitory.Duty
+                userType = new global::Dormitory.Dormitory_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_5_Duty;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 6:   //  Dormitory.MainPage
+                userType = new global::Dormitory.Dormitory_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_6_MainPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 7:   //  Dormitory.Register
+                userType = new global::Dormitory.Dormitory_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_7_Register;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 8:   //  Dormitory.Setting
+                userType = new global::Dormitory.Dormitory_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_8_Setting;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 9:   //  Dormitory.WriteJournal
+                userType = new global::Dormitory.Dormitory_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_9_WriteJournal;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
             }
             return xamlType;
         }
 
 
+        private object get_0_Checkbook_SelectedComboBoxOption(object instance)
+        {
+            var that = (global::Dormitory.Checkbook)instance;
+            return that.SelectedComboBoxOption;
+        }
+        private void set_0_Checkbook_SelectedComboBoxOption(object instance, object Value)
+        {
+            var that = (global::Dormitory.Checkbook)instance;
+            that.SelectedComboBoxOption = (global::Windows.UI.Xaml.Controls.ComboBoxItem)Value;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
             global::Dormitory.Dormitory_XamlTypeInfo.XamlMember xamlMember = null;
-            // No Local Properties
+            global::Dormitory.Dormitory_XamlTypeInfo.XamlUserType userType;
+
+            switch (longMemberName)
+            {
+            case "Dormitory.Checkbook.SelectedComboBoxOption":
+                userType = (global::Dormitory.Dormitory_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Dormitory.Checkbook");
+                xamlMember = new global::Dormitory.Dormitory_XamlTypeInfo.XamlMember(this, "SelectedComboBoxOption", "Windows.UI.Xaml.Controls.ComboBoxItem");
+                xamlMember.Getter = get_0_Checkbook_SelectedComboBoxOption;
+                xamlMember.Setter = set_0_Checkbook_SelectedComboBoxOption;
+                break;
+            }
             return xamlMember;
         }
     }

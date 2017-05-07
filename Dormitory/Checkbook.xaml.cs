@@ -82,5 +82,28 @@ namespace Dormitory
             if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs(prop)); }
         }
         public event PropertyChangedEventHandler PropertyChanged;
+
+
+
+
+
+        private void HomeAppButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckAppButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DutyAppButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
+
     }
 }

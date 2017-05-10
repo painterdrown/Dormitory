@@ -27,6 +27,20 @@ namespace Dormitory
             this.InitializeComponent();
         }
 
+        private void HomeAppButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckAppButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DutyAppButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void selectPhoto(object sender, RoutedEventArgs e)
         {

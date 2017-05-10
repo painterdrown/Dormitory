@@ -36,7 +36,7 @@
         </Grid.Background>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -49,6 +49,7 @@
             <TextBlock Margin="20"
                        FontWeight="Bold"
                        Foreground="#75C4FF"
+                       Style="{StaticResource HeaderTextBlockStyle}"
                        Text="宿舍主页"
                        FontSize="24"/>
         </Grid>
@@ -151,18 +152,27 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="1" Background="AliceBlue">
+        <Grid Grid.Column="1" Grid.Row="1" Background="#FF2B3B65" Margin="0, 20, 20, 20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="宿舍日志"
+            <Border BorderThickness="0, 0, 0, 1" BorderBrush="#F2F6FB" Grid.Column="0">
+                 <TextBlock Text="宿舍日志"
                        FontSize="16"
+                       Foreground="#F2F6FB"
                        HorizontalAlignment="Left"
-                       Margin="8"/>
+                       Margin="8"
+                       FontWeight="Bold"/>
+            </Border>
 
-            <Button HorizontalAlignment="Right" Margin="0, 0, 20, 0" Content="添加新日志"/>
+
+            <Button HorizontalAlignment="Right"
+                    Margin="0, 0, 8, 0"
+                    Content="添加新日志"
+                    Background="#F2F6FB"
+                    Foreground="#FF2B3B65" />
 
             <Grid Grid.Row="1" Margin="0, 0, 20, 0">
 
@@ -179,7 +189,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Grid.Column="0" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                        <TextBlock Grid.Column="1" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" Foreground="#F2F6FB" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                         
                                     </Grid>
                                 </DataTemplate>

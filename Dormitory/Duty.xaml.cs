@@ -27,12 +27,17 @@ namespace Dormitory
             this.InitializeComponent();
         }
 
-        private void CalendarAppButton_Click(object sender, RoutedEventArgs e)
+        private void HomeAppButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void SettingAppButton_Click(object sender, RoutedEventArgs e)
+        private void CheckAppButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DutyAppButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

@@ -203,19 +203,11 @@
                     </Border>
                     <Border BorderThickness="0, 0, 1, 1" BorderBrush="#F2F6FB" Grid.Column="2">
                         <TextBlock Text="日期"
-                               
                                FontSize="16"
                                Foreground="#F2F6FB"
                                Margin="8"
                                HorizontalAlignment="Center"/>
                     </Border>
-
-                   
-
-                    
-
-                    
-
                 </Grid>
 
                 <Grid Grid.Row="1">

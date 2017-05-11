@@ -33,7 +33,15 @@ namespace Dormitory
 
         public Checkbook()
         {
-            this.InitializeComponent();
+            /*var result = await HttpUtil.Login();
+            if ((bool)result["ok"])
+            {
+
+            } else
+            {
+                //result["errMsg"]
+            }
+            this.InitializeComponent();*/
         }
         ViewModels.CheckbookViewModel ViewModel { get; set; }
 
@@ -48,7 +56,7 @@ namespace Dormitory
 
         private void HomeAppButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(DormitoryInfo), "");
+            Frame.Navigate(typeof(Info), "");
         }
 
         private void CheckAppButton_Click(object sender, RoutedEventArgs e)

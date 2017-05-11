@@ -43,7 +43,7 @@ namespace Dormitory.Models
             return await PostForJObject(param, "/register");
         }
 
-        public static async Task<JObject> AddJournal(DateTime time, string content, bool isDefaultImage)
+        /*public static async Task<JObject> AddJournal(DateTime time, string content, bool isDefaultImage)
         {
             //using(var data = new MultipartFormDataContent())
             //{
@@ -62,6 +62,6 @@ namespace Dormitory.Models
             //        data.Add(stream);
             //    }
             //}
-        }
+        }*/
     }
 }

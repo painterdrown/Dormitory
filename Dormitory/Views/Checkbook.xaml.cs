@@ -29,19 +29,11 @@ namespace Dormitory
     /// </summary>
     public sealed partial class Checkbook : Page
     {
-
-        private ObservableCollection<MemberItem> ComboBoxOptions;
+        int clickItem = 0;
 
         public Checkbook()
         {
             this.InitializeComponent();
-            /*
-            // 复选框
-            ComboBoxOptions = new ObservableCollection<MemberItem>();
-            ComboBoxOptionsManager.GetComboBoxList(ComboBoxOptions);
-            // 要用Converter实现数据类型转换，现在乱写的
-            SelectedComboBoxOption = ComboBoxOptions[0];
-            */
         }
         ViewModels.CheckbookViewModel ViewModel { get; set; }
 
@@ -52,38 +44,6 @@ namespace Dormitory
                 ViewModel = (ViewModels.CheckbookViewModel)(e.Parameter);
             }
         }
-
-        /*
-        public class ComboBoxOptionsManager
-        {
-            public static void GetComboBoxList(ObservableCollection<MemberItem> ComboBoxItems)
-            {
-                var allItems = getComboBoxItems();
-                ComboBoxItems.Clear();
-                allItems.ForEach(p => ComboBoxItems.Add(p));
-            }
-
-            private static List<MemberItem> getComboBoxItems()
-            {
-                var items = new List<MemberItem>();
-
-                items.Add(new MemberItem() { ComboBoxOption = "Option1", ComboBoxHumanReadableOption = "Option 1" });
-                items.Add(new MemberItem() { ComboBoxOption = "Option2", ComboBoxHumanReadableOption = "Option 2" });
-                items.Add(new MemberItem() { ComboBoxOption = "Option3", ComboBoxHumanReadableOption = "Option 3" });
-
-                return items;
-            }
-        }
-        
-
-        void RaisePropertyChanged(string prop)
-        {
-            if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs(prop)); }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
-        */
 
 
         private void HomeAppButton_Click(object sender, RoutedEventArgs e)
@@ -101,27 +61,34 @@ namespace Dormitory
             Frame.Navigate(typeof(Duty), "");
         }
 
+        
+
         private void confirmButton_click(object sender, RoutedEventArgs e)
         {
-
+            //如果没有点击item
+            if (clickItem == 0)
+            {
+                string name = "sucker";
+                //this.ComboBox.SelectedItem.ToString()
+                ViewModel.AddCheckbookItem(number.Text, name, date.Date.DateTime, tip.Text);
+            }
+            //如果点击了item
+            else
+            {
+                ViewModel.updateCheckbookItem(number.Text, this.ComboBox.SelectedItem.ToString(), date.Date.DateTime, tip.Text);
+                clickItem = 0;
+            }
         }
 
         private void item_click(object sender, ItemClickEventArgs e)
         {
+            this.clickItem = 1;
             ViewModel.SelectedItem = (Models.CheckbookItem)(e.ClickedItem);
             var i = ViewModel.SelectedItem;
             number.Text = i.cost;
-            foreach (var value in i.member_list)
-            {
-                this.ComboBox.Items.Add(value.name);
-            }
+            //this.ComboBox.SelectedItem
             date.Date = i.datetime;
             this.tip.Text = i.note;
-        }
-
-        private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
-        {
-
         }
     }
 }

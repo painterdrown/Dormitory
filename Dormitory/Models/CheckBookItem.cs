@@ -10,19 +10,17 @@ namespace Dormitory.Models
     {
         public string id;
         public string cost { get; set; }
-        public ComboBoxItem name { get; set; }
         public DateTime datetime { get; set; }
         public string note { get; set; }
-        public List<MemberItem> member_list;
+        public string name;
 
-        public CheckbookItem(string cost, ComboBoxItem name, DateTime datetime, string note, List<MemberItem> member_list)
+        public CheckbookItem(string cost, string name, DateTime datetime, string note)
         {
             this.id = Guid.NewGuid().ToString();
             this.cost = cost;
-            this.name = name;
             this.datetime = datetime;
             this.note = note;
-            this.member_list = member_list;
+            this.name = name;
         }
     }
 }

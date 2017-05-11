@@ -119,7 +119,7 @@
 
                     <ScrollViewer Grid.Row="1"
                                   Height="360"
-                                  VerticalAlignment="Top" ViewChanged="ScrollViewer_ViewChanged">
+                                  VerticalAlignment="Top">
                         
                         <ListView x:Name="CheckbookView" ItemClick="item_click" IsItemClickEnabled="True" ItemsSource="{x:Bind ViewModel.AllItems}">
                             <ListView.ItemTemplate>
@@ -183,8 +183,8 @@
                               FontSize="16"
                               Width="150"
                               Margin="0,16,0,0"
-                              ItemsSource="{x:Bind ComboBoxOptions}"
-                              SelectedValuePath="ComboBoxOption" />
+                              
+                              />
 
 
                     <DatePicker x:Name="date"
@@ -216,6 +216,7 @@
                             Foreground="White"
                             FocusVisualPrimaryBrush="#FFFDFDFD"
                             FontFamily="Microsoft YaHei"
+                            Click="confirmButton_click"
                             Content="确定" VerticalAlignment="Bottom" />
 
                         <Button x:Name="cancelButton"

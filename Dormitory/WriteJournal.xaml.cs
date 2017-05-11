@@ -20,16 +20,11 @@ namespace Dormitory
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class Setting : Page
+    public sealed partial class WriteJournal : Page
     {
-        public Setting()
+        public WriteJournal()
         {
             this.InitializeComponent();
-        }
-
-        private void selectPhoto(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void HomeAppButton_Click(object sender, RoutedEventArgs e)
@@ -47,14 +42,20 @@ namespace Dormitory
 
         }
 
-        private void saveContext(object sender, RoutedEventArgs e)
+        private void selectPhoto(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void clearContext(object sender, RoutedEventArgs e)
+        private void DeleteButton_Clicked(object sender, RoutedEventArgs e)
         {
 
         }
+
+        private void ClearButton_Clicked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

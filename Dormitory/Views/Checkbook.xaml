@@ -41,7 +41,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="title"
+        <Grid Grid.Row="0" Background="#F2F6FB">
+            <TextBlock x:Name="title"
                    Grid.Row="0"
                    HorizontalAlignment="Left"
                    Style="{StaticResource TitleTextBlockStyle}"
@@ -49,12 +50,15 @@
                    VerticalAlignment="Top"
                    FontFamily="Microsoft YaHei UI"
                    FontSize="32"
-                   Margin="24" Foreground="AliceBlue"/>
+                   Margin="24"
+                   Foreground="#75C4FF"/>
+        </Grid>
+        
 
         <Grid Grid.Row="1" 
               VerticalAlignment="Center"
               HorizontalAlignment="Center"
-              Background="AliceBlue" 
+              Background="#F2F6FB" 
               Padding="20"
               BorderThickness="2"
               FocusVisualPrimaryBrush="#FFA6A3A3" 
@@ -74,7 +78,8 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid x:Name="history"
-                      BorderBrush="Black" BorderThickness="1"
+                      BorderBrush="#75C4FF"
+                      BorderThickness="1"
                       Grid.Column="0">
 
                     <Grid.RowDefinitions>
@@ -82,7 +87,7 @@
                         <RowDefinition Height="360"/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0">
+                    <Grid Grid.Row="0" Background="#75C4FF">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="104"/>
                             <ColumnDefinition Width="104"/>
@@ -91,31 +96,32 @@
                             <ColumnDefinition Width="104"/>
                         </Grid.ColumnDefinitions>
 
-                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="Black" Grid.Column="0">
-                            <TextBlock Text="姓名"  FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="White" Grid.Column="0">
+                            <TextBlock Text="姓名"  FontSize="16" Margin="8" HorizontalAlignment="Center" Foreground="White"/>
                         </Border>
 
-                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="Black" Grid.Column="1">
-                            <TextBlock Text="收入/支出" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="White" Grid.Column="1">
+                            <TextBlock Text="收入/支出" FontSize="16" Margin="8" HorizontalAlignment="Center" Foreground="White"/>
                         </Border>
 
-                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="Black" Grid.Column="2" >
-                            <TextBlock Text="日期" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="White" Grid.Column="2" >
+                            <TextBlock Text="日期" FontSize="16" Margin="8" HorizontalAlignment="Center" Foreground="White"/>
                         </Border>
 
-                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="Black" Grid.Column="3" >
-                            <TextBlock Text="状态" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="White" Grid.Column="3" >
+                            <TextBlock Text="状态" FontSize="16" Margin="8" HorizontalAlignment="Center" Foreground="White"/>
                         </Border>
 
-                        <Border BorderThickness="0, 0, 0, 1" BorderBrush="Black" Grid.Column="4" >
-                            <TextBlock Text="备注" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                        <Border BorderThickness="0, 0, 0, 1" BorderBrush="White" Grid.Column="4" >
+                            <TextBlock Text="备注" FontSize="16" Margin="8" HorizontalAlignment="Center" Foreground="White"/>
                         </Border>
                     </Grid>
 
                     <ScrollViewer Grid.Row="1"
                                   Height="360"
-                                  VerticalAlignment="Top">
-                        <!--<ListView x:Name="CheckbookView" IsItemClickEnabled="False" ItemsSource="{x:Bind CheckbookViewModel.CheckbookItems}">
+                                  VerticalAlignment="Top" ViewChanged="ScrollViewer_ViewChanged">
+                        
+                        <ListView x:Name="CheckbookView" ItemClick="item_click" IsItemClickEnabled="True" ItemsSource="{x:Bind ViewModel.AllItems}">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="md:CheckbookItem">
                                     <Grid>
@@ -127,30 +133,30 @@
                                             <ColumnDefinition Width="104"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="Black" Grid.Column="0">
+                                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="0">
                                             <TextBlock Text="姓名"  FontSize="16" Margin="8" HorizontalAlignment="Center"/>
                                         </Border>
 
-                                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="Black" Grid.Column="1">
+                                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="1">
                                             <TextBlock Text="收入/支出" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
                                         </Border>
 
-                                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="Black" Grid.Column="2" >
+                                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="2" >
                                             <TextBlock Text="日期" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
                                         </Border>
 
-                                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="Black" Grid.Column="3" >
+                                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="3" >
                                             <TextBlock Text="状态" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
                                         </Border>
 
-                                        <Border BorderThickness="0, 0, 0, 1" BorderBrush="Black" Grid.Column="4" >
+                                        <Border BorderThickness="0, 0, 0, 1" BorderBrush="#75C4FF" Grid.Column="4" >
                                             <TextBlock Text="备注" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
                                         </Border>
                                         
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-                        </ListView>-->
+                        </ListView>
                     </ScrollViewer>
                 </Grid>
 
@@ -210,7 +216,7 @@
                             Foreground="White"
                             FocusVisualPrimaryBrush="#FFFDFDFD"
                             FontFamily="Microsoft YaHei"
-                            Content="确定" VerticalAlignment="Bottom"/>
+                            Content="确定" VerticalAlignment="Bottom" />
 
                         <Button x:Name="cancelButton"
                             Width="136"

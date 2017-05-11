@@ -119,8 +119,9 @@
 
                     <ScrollViewer Grid.Row="1"
                                   Height="360"
-                                  VerticalAlignment="Top">
-                        <!--<ListView x:Name="CheckbookView" IsItemClickEnabled="False" ItemsSource="{x:Bind CheckbookViewModel.CheckbookItems}">
+                                  VerticalAlignment="Top" ViewChanged="ScrollViewer_ViewChanged">
+                        
+                        <ListView x:Name="CheckbookView" ItemClick="item_click" IsItemClickEnabled="True" ItemsSource="{x:Bind ViewModel.AllItems}">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="md:CheckbookItem">
                                     <Grid>
@@ -155,7 +156,7 @@
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-                        </ListView>-->
+                        </ListView>
                     </ScrollViewer>
                 </Grid>
 
@@ -215,7 +216,7 @@
                             Foreground="White"
                             FocusVisualPrimaryBrush="#FFFDFDFD"
                             FontFamily="Microsoft YaHei"
-                            Content="确定" VerticalAlignment="Bottom"/>
+                            Content="确定" VerticalAlignment="Bottom" />
 
                         <Button x:Name="cancelButton"
                             Width="136"

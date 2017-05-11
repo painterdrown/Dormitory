@@ -15,6 +15,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -31,31 +35,25 @@ namespace Dormitory
         public Checkbook()
         {
             this.InitializeComponent();
+            /*
             // 复选框
             ComboBoxOptions = new ObservableCollection<MemberItem>();
             ComboBoxOptionsManager.GetComboBoxList(ComboBoxOptions);
             // 要用Converter实现数据类型转换，现在乱写的
             SelectedComboBoxOption = ComboBoxOptions[0];
+            */
         }
+        ViewModels.CheckbookViewModel ViewModel { get; set; }
 
-        private ComboBoxItem _SelectedComboBoxOption;
-
-        public ComboBoxItem SelectedComboBoxOption
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            get
+            if (typeof(ViewModels.CheckbookViewModel) == e.Parameter.GetType())
             {
-                return _SelectedComboBoxOption;
-            }
-            set
-            {
-                if (_SelectedComboBoxOption != value)
-                {
-                    _SelectedComboBoxOption = value;
-                    RaisePropertyChanged("SelectedComboBoxOption");
-                }
+                ViewModel = (ViewModels.CheckbookViewModel)(e.Parameter);
             }
         }
 
+        /*
         public class ComboBoxOptionsManager
         {
             public static void GetComboBoxList(ObservableCollection<MemberItem> ComboBoxItems)
@@ -76,6 +74,7 @@ namespace Dormitory
                 return items;
             }
         }
+        
 
         void RaisePropertyChanged(string prop)
         {
@@ -84,12 +83,12 @@ namespace Dormitory
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-
+        */
 
 
         private void HomeAppButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(DormitoryInfo), "");
         }
 
         private void CheckAppButton_Click(object sender, RoutedEventArgs e)
@@ -99,11 +98,30 @@ namespace Dormitory
 
         private void DutyAppButton_Click(object sender, RoutedEventArgs e)
         {
+            Frame.Navigate(typeof(Duty), "");
+        }
+
+        private void confirmButton_click(object sender, RoutedEventArgs e)
+        {
 
         }
 
+        private void item_click(object sender, ItemClickEventArgs e)
+        {
+            ViewModel.SelectedItem = (Models.CheckbookItem)(e.ClickedItem);
+            var i = ViewModel.SelectedItem;
+            number.Text = i.cost;
+            foreach (var value in i.member_list)
+            {
+                this.ComboBox.Items.Add(value.name);
+            }
+            date.Date = i.datetime;
+            this.tip.Text = i.note;
+        }
 
+        private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
 
-
+        }
     }
 }

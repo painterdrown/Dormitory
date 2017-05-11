@@ -9,7 +9,7 @@ using Windows.Storage;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
-namespace Dormitory
+namespace Dormitory.Views
 {
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
@@ -50,12 +50,12 @@ namespace Dormitory
             string password = PasswordPB.Password;
             if (account.Length == 0)
             {
-                new MessageDialog("账号不能为空").ShowAsync();
+                var md = new MessageDialog("账号不能为空").ShowAsync();
                 return;
             }
             if (password.Length == 0)
             {
-                new MessageDialog("密码不能为空").ShowAsync();
+                var md = new MessageDialog("密码不能为空").ShowAsync();
                 return;
             }
 
@@ -73,7 +73,7 @@ namespace Dormitory
             else
             {
                 LoginBT.IsEnabled = true;
-                new MessageDialog((string)result["errMsg"]).ShowAsync();
+                var md = new MessageDialog((string)result["errMsg"]).ShowAsync();
                 return;
             }
         }
@@ -84,12 +84,12 @@ namespace Dormitory
             string password = PasswordRegPB.Password;
             if (account.Length == 0)
             {
-                new MessageDialog("账号不能为空").ShowAsync();
+                var md = new MessageDialog("账号不能为空").ShowAsync();
                 return;
             }
             if (password.Length == 0)
             {
-                new MessageDialog("密码不能为空").ShowAsync();
+                var md = new MessageDialog("密码不能为空").ShowAsync();
                 return;
             }
 
@@ -107,7 +107,7 @@ namespace Dormitory
             else
             {
                 RegisterBT.IsEnabled = true;
-                new MessageDialog((string)result["errMsg"]).ShowAsync();
+                var md = new MessageDialog((string)result["errMsg"]).ShowAsync();
                 return;
             }
         }

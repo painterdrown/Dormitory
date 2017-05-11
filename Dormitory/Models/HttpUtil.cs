@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Dynamic;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -45,23 +46,23 @@ namespace Dormitory.Models
 
         public static async Task<JObject> AddJournal(DateTime time, string content, bool isDefaultImage)
         {
-            //using(var data = new MultipartFormDataContent())
-            //{
-            //    // 文本数据部分
-            //    var json = new JObject();
-            //    json["time"] = time.Ticks;
-            //    json["content"] = content;
-            //    var jstring = JsonConvert.SerializeObject(json);
-            //    var text = new StringContent(jstring, System.Text.Encoding.UTF8, "application/json");
-            //    data.Add(text);
+            using (var data = new MultipartFormDataContent())
+            {
+                // 文本数据部分
+                var json = new JObject();
+                json["time"] = time.Ticks;
+                json["content"] = content;
+                var jstring = JsonConvert.SerializeObject(json);
+                var text = new StringContent(jstring, System.Text.Encoding.UTF8, "application/json");
+                data.Add(text);
 
-            //    // 文件数据部分
-            //    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///temp/temp.png"));
-            //    using (var stream = new StreamContent(file.))
-            //    {
-            //        data.Add(stream);
-            //    }
-            //}
+                // 文件数据部分
+                var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///temp/temp.png"));
+                using (var stream = new StreamContent(await file.OpenStreamForReadAsync()))
+                {
+                    data.Add(stream);
+                }
+            }
         }
     }
 }

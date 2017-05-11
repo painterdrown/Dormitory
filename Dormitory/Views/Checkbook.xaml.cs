@@ -22,7 +22,7 @@ using Windows.UI.Xaml.Navigation;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
-namespace Dormitory
+namespace Dormitory.Views
 {
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
@@ -40,8 +40,10 @@ namespace Dormitory
             } else
             {
                 //result["errMsg"]
-            }
-            this.InitializeComponent();*/
+            }*/
+            
+            this.InitializeComponent();
+            this.ViewModel = new ViewModels.CheckbookViewModel();
         }
         ViewModels.CheckbookViewModel ViewModel { get; set; }
 
@@ -77,15 +79,16 @@ namespace Dormitory
             if (clickItem == 0)
             {
                 string name = "sucker";
-                //this.ComboBox.SelectedItem.ToString()
-                ViewModel.AddCheckbookItem(number.Text, name, date.Date.DateTime, tip.Text);
+                ViewModel.AddCheckbookItem(number.Text, name, date.Date.DateTime, true, tip.Text);
+                var i = new MessageDialog(date.Date.DateTime.ToString()).ShowAsync();
             }
             //如果点击了item
             else
             {
-                ViewModel.updateCheckbookItem(number.Text, this.ComboBox.SelectedItem.ToString(), date.Date.DateTime, tip.Text);
+                ViewModel.updateCheckbookItem(number.Text, this.ComboBox.SelectedItem.ToString(), date.Date.DateTime, true, tip.Text);
                 clickItem = 0;
             }
+            Frame.Navigate(typeof(Checkbook), ViewModel);
         }
 
         private void item_click(object sender, ItemClickEventArgs e)
@@ -97,6 +100,11 @@ namespace Dormitory
             //this.ComboBox.SelectedItem
             date.Date = i.datetime;
             this.tip.Text = i.note;
+        }
+
+        private void CheckbookView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

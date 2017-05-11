@@ -6,8 +6,12 @@
     xmlns:md="using:Dormitory.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:cv="using:Dormitory.Converters"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <cv:DateToString x:Key="DateToString"/>
+    </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar  RequestedTheme="Dark" Background="#75C4FF">
             <AppBarButton
@@ -134,23 +138,23 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="0">
-                                            <TextBlock Text="姓名"  FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{x:Bind name}"  FontSize="16" Margin="8" HorizontalAlignment="Center"/>
                                         </Border>
 
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="1">
-                                            <TextBlock Text="收入/支出" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{x:Bind cost}" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
                                         </Border>
 
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="2" >
-                                            <TextBlock Text="日期" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{x:Bind datetime, Converter={StaticResource DateToString}}" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
                                         </Border>
 
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="3" >
-                                            <TextBlock Text="状态" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                                            <CheckBox x:Name="state"  Height="32" Width="32" HorizontalAlignment="Center"/>
                                         </Border>
 
                                         <Border BorderThickness="0, 0, 0, 1" BorderBrush="#75C4FF" Grid.Column="4" >
-                                            <TextBlock Text="备注" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{x:Bind note}" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
                                         </Border>
                                         
                                     </Grid>

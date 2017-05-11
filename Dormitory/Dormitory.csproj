@@ -96,6 +96,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DateToString.cs" />
     <Compile Include="Converters\ImageToUri.cs" />
     <Compile Include="Models\HttpUtil.cs" />
     <Compile Include="Models\NewObservableCollection.cs" />

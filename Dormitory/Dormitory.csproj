@@ -96,31 +96,35 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Checkbook.xaml.cs">
+    <Compile Include="Converters\ImageToUri.cs" />
+    <Compile Include="Models\HttpUtil.cs" />
+    <Compile Include="Models\NewObservableCollection.cs" />
+    <Compile Include="ViewModels\InfoViewModel.cs" />
+    <Compile Include="Views\Checkbook.xaml.cs">
       <DependentUpon>Checkbook.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DormitoryInfo.xaml.cs">
-      <DependentUpon>DormitoryInfo.xaml</DependentUpon>
+    <Compile Include="Views\Info.xaml.cs">
+      <DependentUpon>Info.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Duty.xaml.cs">
+    <Compile Include="Views\Duty.xaml.cs">
       <DependentUpon>Duty.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LogIn.xaml.cs">
-      <DependentUpon>LogIn.xaml</DependentUpon>
+    <Compile Include="Views\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\CheckbookItem.cs" />
     <Compile Include="Models\DutyItem.cs" />
     <Compile Include="Models\JournalItem.cs" />
     <Compile Include="Models\MemberItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setting.xaml.cs">
+    <Compile Include="Views\Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CheckbookViewModel.cs" />
     <Compile Include="ViewModels\DutyViewModel.cs" />
     <Compile Include="ViewModels\JournalViewModel.cs" />
     <Compile Include="ViewModels\MemberViewModel.cs" />
-    <Compile Include="WriteJournal.xaml.cs">
+    <Compile Include="Views\WriteJournal.xaml.cs">
       <DependentUpon>WriteJournal.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -147,27 +151,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Checkbook.xaml">
+    <Page Include="Views\Checkbook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DormitoryInfo.xaml">
+    <Page Include="Views\Info.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Duty.xaml">
+    <Page Include="Views\Duty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LogIn.xaml">
+    <Page Include="Views\Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Setting.xaml">
+    <Page Include="Views\Setting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WriteJournal.xaml">
+    <Page Include="Views\WriteJournal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

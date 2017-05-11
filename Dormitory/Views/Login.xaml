@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Dormitory.MainPage"
+    x:Class="Dormitory.Login"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Dormitory"
@@ -17,7 +17,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <Grid Grid.Row="0"
               Height="336"
               Width="800"
@@ -27,14 +26,12 @@
               FocusVisualSecondaryBrush="#99D1CDCD">
             <Grid.Background>
                 <ImageBrush Stretch="Fill"
-                            ImageSource="Assets/background_login.jpg"/>
+                            ImageSource="../Assets/background_login.jpg"/>
             </Grid.Background>
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="328"/>
             </Grid.ColumnDefinitions>
-
             <Grid Grid.Column="1" Width="Auto" Height="Auto" Background="#F2F6FB">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -43,7 +40,6 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-
                 <TextBlock
                     Grid.Row="0"
                     Text="宿舍宝"
@@ -51,7 +47,6 @@
                     FontSize="32"
                     Margin="24"
                     Foreground="#75C4FF"/>
-
                 <Pivot Grid.Row="1" Margin="12, 0, 12, 24">
                     <PivotItem Header="登陆">
                         <Grid Grid.Row="1">
@@ -62,17 +57,16 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-
-                            <TextBox x:Name="account"
+                            <TextBox x:Name="AccountTB"
                                      Grid.Row="0"
                                      Width="280"
                                      Height="Auto"
                                      FontSize="16"
                                      PlaceholderText="请输入账号"
                                      Margin="0, 12, 0, 0"
-                                     HorizontalAlignment="Left"/>
-
-                            <PasswordBox x:Name="password"
+                                     HorizontalAlignment="Left"
+                                     LostFocus="AccountTB_LostFocus"/>
+                            <PasswordBox x:Name="PasswordPB"
                                          Grid.Row="2"
                                          Width="280"
                                          Height="Auto"
@@ -80,8 +74,7 @@
                                          PlaceholderText="请输入密码"
                                          HorizontalAlignment="Left"
                                          Margin="0, 12, 0, 0"/>
-
-                            <Button x:Name="logIn"
+                            <Button x:Name="LoginBT"
                                     Grid.Row="4"
                                     Grid.Column="0"
                                     Width="140"
@@ -92,10 +85,10 @@
                                     Background="#75C4FF"
                                     Foreground="White"
                                     FocusVisualPrimaryBrush="#FFFDFDFD"
-                                    FontFamily="Microsoft YaHei"/>
+                                    FontFamily="Microsoft YaHei"
+                                    Click="LoginBT_Click"/>
                         </Grid>
                     </PivotItem>
-
                     <PivotItem Header="注册">
                         <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
@@ -104,8 +97,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-
-                            <TextBox x:Name="accountReg"
+                            <TextBox x:Name="AccountRegTB"
                                      Grid.Row="0"
                                      Width="280"
                                      Height="Auto"
@@ -113,8 +105,7 @@
                                      Margin="0, 12, 0, 0"
                                      HorizontalAlignment="Left"
                                      PlaceholderText="请设置账号"/>
-
-                            <PasswordBox x:Name="passwordReg"
+                            <PasswordBox x:Name="PasswordRegPB"
                                          Grid.Row="1"
                                          Width="280"
                                          Height="Auto"
@@ -122,8 +113,7 @@
                                          PlaceholderText="请设置密码"
                                          HorizontalAlignment="Left"
                                          Margin="0, 12, 0, 0"/>
-
-                            <Button x:Name="register"
+                            <Button x:Name="RegisterBT"
                                     Grid.Row="3"
                                     Grid.Column="0"
                                     Width="140"
@@ -134,7 +124,8 @@
                                     FontFamily="Microsoft YaHei"
                                     Content="注册"
                                     Foreground="White"
-                                    Margin="0, 24, 0, 0"/>
+                                    Margin="0, 24, 0, 0"
+                                    Click="RegisterBT_Click"/>
                         </Grid>
                     </PivotItem>
                 </Pivot>

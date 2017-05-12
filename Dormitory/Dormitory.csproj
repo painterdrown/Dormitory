@@ -101,6 +101,7 @@
     <Compile Include="Converters\ImageToUri.cs" />
     <Compile Include="Models\HttpUtil.cs" />
     <Compile Include="Models\NewObservableCollection.cs" />
+    <Compile Include="Models\Temp.cs" />
     <Compile Include="ViewModels\InfoViewModel.cs" />
     <Compile Include="Views\Checkbook.xaml.cs">
       <DependentUpon>Checkbook.xaml</DependentUpon>

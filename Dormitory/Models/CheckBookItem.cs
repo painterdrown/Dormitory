@@ -14,7 +14,7 @@ namespace Dormitory.Models
         public bool state { get; set; }
         public string inOrOut { get; set; }
         public string note { get; set; }
-        public string name;
+        public string name { get; set; }
 
         public CheckbookItem(string cost, string name, DateTime datetime, bool state, string inOrOut, string note)
         {

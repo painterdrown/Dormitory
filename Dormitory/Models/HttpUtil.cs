@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
+using Windows.System;
 using System.Dynamic;
 using System.IO;
 using System.Net.Http;
-using System.Threading.Tasks;
+using Windows.System.Threading.Tasks;
 using Windows.Storage;
 
 namespace Dormitory.Models

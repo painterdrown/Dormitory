@@ -105,6 +105,8 @@ namespace Dormitory.Views
                 //await ViewModel.updateCheckbookItem(number.Text, this.ComboBox.SelectedItem.ToString(), date.Date.DateTime, ViewModel.SelectedItem.state, tip.Text);
                 await ViewModel.updateCheckbookItem(number.Text, "sucker", date.Date.DateTime, ViewModel.SelectedItem.state, tip.Text);
                 confirmButton.Content = "确定";
+                number.Text = "";
+                tip.Text = "";
                 ComboBox1.IsEnabled = true;
                 number.IsReadOnly = false;
             }

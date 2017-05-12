@@ -25,6 +25,16 @@ namespace Dormitory.Views
         public Setting()
         {
             this.InitializeComponent();
+            this.ViewModel = new ViewModels.MemberViewModel();
+        }
+        ViewModels.MemberViewModel ViewModel { get; set; }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (typeof(ViewModels.MemberViewModel) == e.Parameter.GetType())
+            {
+                ViewModel = (ViewModels.MemberViewModel)(e.Parameter);
+            }
         }
 
         private void selectPhoto(object sender, RoutedEventArgs e)
@@ -49,12 +59,15 @@ namespace Dormitory.Views
 
         private void saveContext(object sender, RoutedEventArgs e)
         {
-
+            ViewModel.addMemberItem(userFace.Source, username.Text, BirthDay.Date.DateTime, province.Text + "_" + area.Text, 0);
+            
         }
 
         private void clearContext(object sender, RoutedEventArgs e)
         {
-
+            username.Text = "";
+            BirthDay.Date = DateTime.Now;
+            province.Text = area.Text = "";
         }
     }
 }

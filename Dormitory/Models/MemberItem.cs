@@ -16,13 +16,12 @@ namespace Dormitory.Models
         public int id { get; set; }
         public int random_num { get; set; }
 
-        public MemberItem(ImageSource pic, string name, DateTime birth, string location, int id, int random_num)
+        public MemberItem(ImageSource pic, string name, DateTime birth, string location, int random_num)
         {
             this.pic = pic;
             this.name = name;
             this.birth = birth;
             this.location = location;
-            this.id = id;
             this.random_num = random_num;
         }
     }

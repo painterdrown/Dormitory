@@ -115,6 +115,7 @@
 
             <Image x:Name="userFace"
                Grid.Column="1"
+               
                Height="250"
                Width="250"
                VerticalAlignment="Top"

@@ -46,6 +46,11 @@ namespace Dormitory.Views
 
         }
 
+        private void ToSetting(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Setting), "");
+        }
+
         private void CheckAppButton_Click(object sender, RoutedEventArgs e)
         {
 

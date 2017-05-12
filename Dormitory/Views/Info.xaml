@@ -150,7 +150,7 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>-->
-                        <Button Content="添加新成员" Width="104" BorderBrush="#F2F6FB" BorderThickness="1" Height="40" Background="#E0FFC753" Foreground="#F6FBFE" FontWeight="Bold" FocusVisualPrimaryBrush="#FFFFD100" FocusVisualSecondaryBrush="#FFF2F6FB" />
+                        <Button Click="ToSetting" Content="添加新成员" Width="104" BorderBrush="#F2F6FB" BorderThickness="1" Height="40" Background="#E0FFC753" Foreground="#F6FBFE" FontWeight="Bold" FocusVisualPrimaryBrush="#FFFFD100" FocusVisualSecondaryBrush="#FFF2F6FB" />
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

@@ -29,14 +29,14 @@ namespace Dormitory.ViewModels
             this.allItems.Add(new Models.CheckbookItem(cost, name, datetime, state, inOrOut ,note));
         }
         //更新item
-        public async Task updateCheckbookItem(string cost, string name, DateTime datetime, bool state, string note)
+        public void updateCheckbookItem(string cost, string name, DateTime datetime, bool state, string note)
         {
             var i = selectedItem;
-            i.cost = cost;
-            i.state = state;
-            i.datetime = datetime;
-            i.note = note;
-            i.name = name;
+            i.COST = cost;
+            i.STATE = state;
+            i.DATETIME = datetime;
+            i.NOTE = note;
+            i.NAME = name;
             selectedItem = null;
         }
     }

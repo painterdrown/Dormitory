@@ -99,6 +99,7 @@
     <Compile Include="Converters\checkboxTo.cs" />
     <Compile Include="Converters\DateToString.cs" />
     <Compile Include="Converters\ImageToUri.cs" />
+    <Compile Include="Models\BindableBase.cs" />
     <Compile Include="Models\HttpUtil.cs" />
     <Compile Include="Models\NewObservableCollection.cs" />
     <Compile Include="ViewModels\InfoViewModel.cs" />

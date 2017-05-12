@@ -79,7 +79,7 @@ namespace Dormitory.Views
             if (clickItem == 0)
             {
                 string name = "sucker";
-                ViewModel.AddCheckbookItem(number.Text, name, date.Date.DateTime, true, tip.Text);
+                ViewModel.AddCheckbookItem(number.Text, name, date.Date.DateTime, true, "", tip.Text);
                 var i = new MessageDialog(date.Date.DateTime.ToString()).ShowAsync();
             }
             //如果点击了item
@@ -102,7 +102,17 @@ namespace Dormitory.Views
             this.tip.Text = i.note;
         }
 
-        private void CheckbookView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void checked_click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SelectedItem = (sender as CheckBox).DataContext as CheckbookItem;
+            if (ViewModel.SelectedItem != null)
+            {
+                ViewModel.SelectedItem.state = true;
+                await ViewModel.updateCheckbookItem(ViewModel.SelectedItem.id, ViewModel.SelectedItem.name, ViewModel.SelectedItem.datetime, ViewModel.SelectedItem.state, ViewModel.SelectedItem.note);
+            }
+        }
+
+        private void unchecked_click(object sender, RoutedEventArgs e)
         {
 
         }

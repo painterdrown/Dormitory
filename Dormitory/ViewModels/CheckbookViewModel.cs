@@ -24,12 +24,12 @@ namespace Dormitory.ViewModels
             selectedItem = null;
         }
         //删除item
-        public void AddCheckbookItem(string cost, string name, DateTime datetime, bool state, string note)
+        public void AddCheckbookItem(string cost, string name, DateTime datetime, bool state, string inOrOut, string note)
         {
-            this.allItems.Add(new Models.CheckbookItem(cost, name, datetime, state, note));
+            this.allItems.Add(new Models.CheckbookItem(cost, name, datetime, state, inOrOut ,note));
         }
         //更新item
-        public void updateCheckbookItem(string cost, string name, DateTime datetime, bool state, string note)
+        public async Task updateCheckbookItem(string cost, string name, DateTime datetime, bool state, string note)
         {
             var i = selectedItem;
             i.cost = cost;

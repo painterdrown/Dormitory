@@ -11,6 +11,7 @@
 
     <Page.Resources>
         <cv:DateToString x:Key="DateToString"/>
+        <cv:checkboxTo x:Key="checkboxTo"/>
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar  RequestedTheme="Dark" Background="#75C4FF">
@@ -150,7 +151,7 @@
                                         </Border>
 
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="3" >
-                                            <CheckBox x:Name="state"  Height="32" Width="32" HorizontalAlignment="Center"/>
+                                            <CheckBox x:Name="state" IsChecked="{x:Bind state, Mode=TwoWay, Converter={StaticResource checkboxTo}}"  Height="32" Width="32" HorizontalAlignment="Center"  Checked="checked_click" Unchecked="unchecked_click"/>
                                         </Border>
 
                                         <Border BorderThickness="0, 0, 0, 1" BorderBrush="#75C4FF" Grid.Column="4" >

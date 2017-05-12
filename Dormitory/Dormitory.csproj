@@ -89,6 +89,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\background_login.jpg" />
     <Content Include="Assets\fonts\方正清刻本悦宋简体.TTF" />
     <None Include="project.json" />
   </ItemGroup>
@@ -138,7 +139,6 @@
     <None Include="Dormitory_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\background_login.jpg" />
     <Content Include="Assets\default.jpg" />
     <Content Include="Assets\random.jpg" />
     <Content Include="Properties\Default.rd.xml" />

@@ -71,9 +71,9 @@ namespace Dormitory.Views
             Frame.Navigate(typeof(Duty), "");
         }
 
-        
 
-        private void confirmButton_click(object sender, RoutedEventArgs e)
+
+        private async void confirmButton_click(object sender, RoutedEventArgs e)
         {
             //如果没有点击item
             if (clickItem == 0)
@@ -85,7 +85,7 @@ namespace Dormitory.Views
             //如果点击了item
             else
             {
-                ViewModel.updateCheckbookItem(number.Text, this.ComboBox.SelectedItem.ToString(), date.Date.DateTime, true, tip.Text);
+                await ViewModel.updateCheckbookItem(number.Text, this.ComboBox.SelectedItem.ToString(), date.Date.DateTime, true, tip.Text);
                 clickItem = 0;
             }
             Frame.Navigate(typeof(Checkbook), ViewModel);
@@ -112,9 +112,14 @@ namespace Dormitory.Views
             }
         }
 
-        private void unchecked_click(object sender, RoutedEventArgs e)
+        private async void unchecked_click(object sender, RoutedEventArgs e)
         {
-
+            ViewModel.SelectedItem = (sender as CheckBox).DataContext as CheckbookItem;
+            if (ViewModel.SelectedItem != null)
+            {
+                ViewModel.SelectedItem.state = false;
+                await ViewModel.updateCheckbookItem(ViewModel.SelectedItem.id, ViewModel.SelectedItem.name, ViewModel.SelectedItem.datetime, ViewModel.SelectedItem.state, ViewModel.SelectedItem.note);
+            }
         }
     }
 }

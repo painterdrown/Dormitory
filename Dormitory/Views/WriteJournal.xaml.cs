@@ -1,5 +1,6 @@
 ﻿using Dormitory.Models;
 using System;
+using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Popups;
@@ -103,6 +104,11 @@ namespace Dormitory.Views
                     bitmapImage.DecodePixelWidth = 600;
                     await bitmapImage.SetSourceAsync(fileStream);
                     photo.Source = bitmapImage;
+                    // 保存到临时文件夹
+                    var fileToSave = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("temp.png", CreationCollisionOption.ReplaceExisting);
+                    var stream = await file.OpenReadAsync();
+                    var bytes = await Temp.GetBytesFromStream(stream);
+                   await FileIO.WriteBytesAsync(fileToSave, bytes);
                 }
             }
             else
@@ -118,6 +124,10 @@ namespace Dormitory.Views
             }else
             {
                 var uri = (photo.Source as BitmapImage).UriSource;
+                if(uri == null)
+                {
+                    uri = new Uri("ms-appdata:///temp/temp.png");
+                }
                 var content = Details.Text;
                 jItem.pic = uri;
                 jItem.content = content;

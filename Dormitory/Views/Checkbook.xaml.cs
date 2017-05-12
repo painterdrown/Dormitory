@@ -1,5 +1,21 @@
 ﻿using Dormitory.Models;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -17,7 +33,17 @@ namespace Dormitory.Views
 
         public Checkbook()
         {
+            /*var result = await HttpUtil.Login();
+            if ((bool)result["ok"])
+            {
+
+            } else
+            {
+                //result["errMsg"]
+            }*/
+            
             this.InitializeComponent();
+            this.ViewModel = new ViewModels.CheckbookViewModel();
         }
         ViewModels.CheckbookViewModel ViewModel { get; set; }
 
@@ -53,15 +79,16 @@ namespace Dormitory.Views
             if (clickItem == 0)
             {
                 string name = "sucker";
-                //this.ComboBox.SelectedItem.ToString()
-                ViewModel.AddCheckbookItem(number.Text, name, date.Date.DateTime, tip.Text);
+                ViewModel.AddCheckbookItem(number.Text, name, date.Date.DateTime, true, "", tip.Text);
+                var i = new MessageDialog(date.Date.DateTime.ToString()).ShowAsync();
             }
             //如果点击了item
             else
             {
-                ViewModel.updateCheckbookItem(number.Text, this.ComboBox.SelectedItem.ToString(), date.Date.DateTime, tip.Text);
+                ViewModel.updateCheckbookItem(number.Text, this.ComboBox.SelectedItem.ToString(), date.Date.DateTime, true, tip.Text);
                 clickItem = 0;
             }
+            Frame.Navigate(typeof(Checkbook), ViewModel);
         }
 
         private void item_click(object sender, ItemClickEventArgs e)
@@ -73,6 +100,21 @@ namespace Dormitory.Views
             //this.ComboBox.SelectedItem
             date.Date = i.datetime;
             this.tip.Text = i.note;
+        }
+
+        private async void checked_click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SelectedItem = (sender as CheckBox).DataContext as CheckbookItem;
+            if (ViewModel.SelectedItem != null)
+            {
+                ViewModel.SelectedItem.state = true;
+                await ViewModel.updateCheckbookItem(ViewModel.SelectedItem.id, ViewModel.SelectedItem.name, ViewModel.SelectedItem.datetime, ViewModel.SelectedItem.state, ViewModel.SelectedItem.note);
+            }
+        }
+
+        private void unchecked_click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

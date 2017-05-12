@@ -6,8 +6,13 @@
     xmlns:md="using:Dormitory.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:cv="using:Dormitory.Converters"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <cv:DateToString x:Key="DateToString"/>
+        <cv:checkboxTo x:Key="checkboxTo"/>
+    </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar  RequestedTheme="Dark" Background="#75C4FF">
             <AppBarButton
@@ -53,7 +58,7 @@
                    Margin="24"
                    Foreground="#75C4FF"/>
         </Grid>
-        
+
 
         <Grid Grid.Row="1" 
               VerticalAlignment="Center"
@@ -93,7 +98,7 @@
                             <ColumnDefinition Width="104"/>
                             <ColumnDefinition Width="104"/>
                             <ColumnDefinition Width="104"/>
-                            <ColumnDefinition Width="104"/>
+                            <ColumnDefinition Width="132"/>
                         </Grid.ColumnDefinitions>
 
                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="White" Grid.Column="0">
@@ -101,7 +106,7 @@
                         </Border>
 
                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="White" Grid.Column="1">
-                            <TextBlock Text="收入/支出" FontSize="16" Margin="8" HorizontalAlignment="Center" Foreground="White"/>
+                            <TextBlock Text="金额" FontSize="16" Margin="8" HorizontalAlignment="Center" Foreground="White"/>
                         </Border>
 
                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="White" Grid.Column="2" >
@@ -109,50 +114,56 @@
                         </Border>
 
                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="White" Grid.Column="3" >
-                            <TextBlock Text="状态" FontSize="16" Margin="8" HorizontalAlignment="Center" Foreground="White"/>
+                            <TextBlock Text="备注" FontSize="16" Margin="8" HorizontalAlignment="Center" Foreground="White"/>
                         </Border>
 
                         <Border BorderThickness="0, 0, 0, 1" BorderBrush="White" Grid.Column="4" >
-                            <TextBlock Text="备注" FontSize="16" Margin="8" HorizontalAlignment="Center" Foreground="White"/>
+                            <TextBlock Text="状态" FontSize="16" Margin="8" HorizontalAlignment="Center" Foreground="White"/>
                         </Border>
                     </Grid>
 
                     <ScrollViewer Grid.Row="1"
                                   Height="360"
+                                  Margin="-12, 0, -12, 0"
+                                  HorizontalAlignment="Left"
                                   VerticalAlignment="Top">
-                        
+
                         <ListView x:Name="CheckbookView" ItemClick="item_click" IsItemClickEnabled="True" ItemsSource="{x:Bind ViewModel.AllItems}">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="md:CheckbookItem">
-                                    <Grid>
+                                    <Grid Margin="0, -5, 0, 0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="104"/>
                                             <ColumnDefinition Width="104"/>
                                             <ColumnDefinition Width="104"/>
                                             <ColumnDefinition Width="104"/>
-                                            <ColumnDefinition Width="104"/>
+                                            <ColumnDefinition Width="132"/>
                                         </Grid.ColumnDefinitions>
 
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="0">
-                                            <TextBlock Text="姓名"  FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{x:Bind name}"  FontSize="16" Margin="8" HorizontalAlignment="Center"/>
                                         </Border>
 
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="1">
-                                            <TextBlock Text="收入/支出" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{x:Bind cost}" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
                                         </Border>
 
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="2" >
-                                            <TextBlock Text="日期" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{x:Bind datetime, Converter={StaticResource DateToString}}" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
                                         </Border>
 
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#75C4FF" Grid.Column="3" >
-                                            <TextBlock Text="状态" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+
+                                            <CheckBox x:Name="state" IsChecked="{x:Bind state, Mode=TwoWay, Converter={StaticResource checkboxTo}}"  Height="32" Width="32" HorizontalAlignment="Center"  Checked="checked_click" Unchecked="unchecked_click"/>
+
+                                            <TextBlock Text="{x:Bind note}" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+
                                         </Border>
 
-                                        <Border BorderThickness="0, 0, 0, 1" BorderBrush="#75C4FF" Grid.Column="4" >
-                                            <TextBlock Text="备注" FontSize="16" Margin="8" HorizontalAlignment="Center"/>
+                                        <Border BorderThickness="0, 0, 0, 1" BorderBrush="#75C4FF" Grid.Column="4">
+                                            <CheckBox x:Name="state" Content="已归还" HorizontalAlignment="Center" Width="120"/>
                                         </Border>
-                                        
+
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -169,23 +180,29 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
+                    <ComboBox Name="ComboBox1"
+                              Header="收入/支出"
+                              Grid.Row="1"
+                              Margin="0,16,0,0"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Right"
+                              DisplayMemberPath="ComboBoxHumanReadableOption"
+                              FontSize="16"
+                              Width="104"/>
+
                     <TextBox x:Name="number"
                              Header="金额"
                              FontSize="16"
-                             Grid.Row="0"
+                             Grid.Row="1"
+                             Margin="0,16,0,0"
                              Width="150"
                              HorizontalAlignment="Left"/>
 
                     <ComboBox Name="ComboBox"
-                              Grid.Row="1"
                               DisplayMemberPath="ComboBoxHumanReadableOption"
                               Header="姓名"
                               FontSize="16"
-                              Width="150"
-                              Margin="0,16,0,0"
-                              
-                              />
-
+                              Width="150"/>
 
                     <DatePicker x:Name="date"
                                 Grid.Row="2"

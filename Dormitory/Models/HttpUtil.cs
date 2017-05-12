@@ -44,25 +44,31 @@ namespace Dormitory.Models
             return await PostForJObject(param, "/register");
         }
 
-        public static async Task<JObject> AddJournal(DateTime time, string content, bool isDefaultImage)
+        public static async Task<JObject> AddJournal(string content, bool isDefaultImage)
         {
-            using (var data = new MultipartFormDataContent())
-            {
-                // 文本数据部分
-                var json = new JObject();
-                json["time"] = time.Ticks;
-                json["content"] = content;
-                var jstring = JsonConvert.SerializeObject(json);
-                var text = new StringContent(jstring, System.Text.Encoding.UTF8, "application/json");
-                data.Add(text);
+            var data = new MultipartFormDataContent();
 
-                // 文件数据部分
-                var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///temp/temp.png"));
-                using (var stream = new StreamContent(await file.OpenStreamForReadAsync()))
-                {
-                    data.Add(stream);
-                }
-            }
+            // 文本数据部分
+            var json = new JObject();
+            json["content"] = content;
+            var jstring = JsonConvert.SerializeObject(json);
+            var text = new StringContent(jstring, System.Text.Encoding.UTF8, "application/json");
+            data.Add(text);
+
+            // 文件数据部分
+            string uri = isDefaultImage ? "ms-appx:///Assets/default.jpg" : "ms-appdata:///temp/temp.png";
+            var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(uri));
+            var stream = new StreamContent(await file.OpenStreamForReadAsync());
+            data.Add(stream, "image", "temp.png");
+
+            // POST并接收
+            var http = new HttpClient();
+            var res = await http.PostAsync(BASE_URL + "/add-journal", data);
+            var retString = await res.Content.ReadAsStringAsync();
+            var ret = JObject.Parse(retString);
+            return ret;
         }
+
+
     }
 }

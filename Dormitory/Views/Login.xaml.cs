@@ -25,6 +25,8 @@ namespace Dormitory.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            HttpUtil.AddJournal("bbb", true);
+
             var vault = new PasswordVault();
             if (vault.RetrieveAll().Count != 0)
             {

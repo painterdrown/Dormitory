@@ -3,8 +3,13 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Net.Http;
 using Windows.Storage;
+
 using System.Threading.Tasks;
 using System;
+
+using System;
+using System.Threading.Tasks;
+
 
 namespace Dormitory.Models
 {

@@ -5,7 +5,6 @@ namespace Dormitory.Models
 {
     class MemberItem :BindableBase
     {
-        public ImageSource pic { get; set; }
         public string name { get; set; }
         public DateTime birth { get; set; }
         public string location { get; set; }
@@ -13,9 +12,8 @@ namespace Dormitory.Models
         public int random_num { get; set; }
         string message;
 
-        public MemberItem(ImageSource pic, string name, DateTime birth, string location, int random_num)
+        public MemberItem(string name, DateTime birth, string location, int random_num)
         {
-            this.pic = pic;
             this.name = name;
             this.birth = birth;
             this.location = location;
@@ -24,7 +22,6 @@ namespace Dormitory.Models
 
         public MemberItem()
         {
-            pic = null;
             birth = DateTime.Now;
             name = "";
             location = "";

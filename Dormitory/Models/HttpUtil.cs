@@ -134,6 +134,18 @@ namespace Dormitory.Models
             return ret;
         }
 
+        /** 获取所有成员的信息
+         * 返回的JObject的属性：ok, members(JArray类型)
+         * members的每个元素都是JObject，这个JObject的属性有：
+         * did, mno, name, birth(long类型，可构造DateTime), location, count(随机事件的次数)
+         */
+        public static async Task<JObject> GetMembers(string did)
+        {
+            var param = new JObject();
+            param["did"] = did;
+            return await PostForJObject(param, "/get-members");
+        }
+
         public static async Task<JObject> AddCheckbookItem(string did, CheckbookItem item)
         {
             var param = new JObject();

@@ -1,21 +1,4 @@
 ﻿using Dormitory.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -29,7 +12,6 @@ namespace Dormitory.Views
     /// </summary>
     public sealed partial class Checkbook : Page
     {
-        int clickItem = 0;
 
         public Checkbook()
         {
@@ -41,7 +23,7 @@ namespace Dormitory.Views
             {
                 //result["errMsg"]
             }*/
-            
+
             this.InitializeComponent();
             this.ViewModel = new ViewModels.CheckbookViewModel();
         }
@@ -89,8 +71,8 @@ namespace Dormitory.Views
                 {
                     number.Text = "-" + number.Text;
                 }
-                int money = int.Parse(number.Text);
-                int left = int.Parse(leftMoney.Text.ToString().Substring(1));
+                float money = float.Parse(number.Text);
+                float left = float.Parse(leftMoney.Text.ToString().Substring(1));
                 left += money;
                 ViewModel.AddCheckbookItem(number.Text, name, date.Date.DateTime, false, "", tip.Text);
                 leftMoney.Text = "￥" + left.ToString();
@@ -103,14 +85,14 @@ namespace Dormitory.Views
             else
             {
                 //await ViewModel.updateCheckbookItem(number.Text, this.ComboBox.SelectedItem.ToString(), date.Date.DateTime, ViewModel.SelectedItem.state, tip.Text);
-                await ViewModel.updateCheckbookItem(number.Text, "sucker", date.Date.DateTime, ViewModel.SelectedItem.state, tip.Text);
+                ViewModel.updateCheckbookItem(number.Text, "sucker", date.Date.DateTime, ViewModel.SelectedItem.STATE, tip.Text);
                 confirmButton.Content = "确定";
                 number.Text = "";
                 tip.Text = "";
                 ComboBox1.IsEnabled = true;
                 number.IsReadOnly = false;
             }
-            
+
         }
 
         private void item_click(object sender, ItemClickEventArgs e)
@@ -120,10 +102,15 @@ namespace Dormitory.Views
             confirmButton.Content = "更改";
             ViewModel.SelectedItem = (Models.CheckbookItem)(e.ClickedItem);
             var i = ViewModel.SelectedItem;
-            number.Text = i.cost;
-            //this.ComboBox.SelectedItem
-            date.Date = i.datetime;
-            this.tip.Text = i.note;
+            number.Text = i.COST;
+            date.Date = i.DATETIME;
+            this.tip.Text = i.NOTE;
+        }
+
+        private void deleteInfo(object sender, ItemClickEventArgs e)
+        {
+            number.Text = "";
+            tip.Text = "";
         }
 
         private async void checked_click(object sender, RoutedEventArgs e)
@@ -131,8 +118,8 @@ namespace Dormitory.Views
             ViewModel.SelectedItem = (sender as CheckBox).DataContext as CheckbookItem;
             if (ViewModel.SelectedItem != null)
             {
-                ViewModel.SelectedItem.state = true;
-                await ViewModel.updateCheckbookItem(ViewModel.SelectedItem.cost, ViewModel.SelectedItem.name, ViewModel.SelectedItem.datetime, ViewModel.SelectedItem.state, ViewModel.SelectedItem.note);
+                ViewModel.SelectedItem.STATE = true;
+                ViewModel.updateCheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE);
             }
         }
 
@@ -141,8 +128,8 @@ namespace Dormitory.Views
             ViewModel.SelectedItem = (sender as CheckBox).DataContext as CheckbookItem;
             if (ViewModel.SelectedItem != null)
             {
-                ViewModel.SelectedItem.state = false;
-                await ViewModel.updateCheckbookItem(ViewModel.SelectedItem.cost, ViewModel.SelectedItem.name, ViewModel.SelectedItem.datetime, ViewModel.SelectedItem.state, ViewModel.SelectedItem.note);
+                ViewModel.SelectedItem.STATE = false;
+                ViewModel.updateCheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE);
             }
         }
     }

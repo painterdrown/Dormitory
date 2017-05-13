@@ -1,30 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
+
 namespace Dormitory.Models
 {
-    class CheckbookItem
+    class CheckbookItem : BindableBase
     {
-        public string id;
-        public string cost { get; set; }
-        public DateTime datetime { get; set; }
-        public bool state { get; set; }
-        public string inOrOut { get; set; }
-        public string note { get; set; }
-        public string name { get; set; }
+        private string cno;
+        private string cost;
+        private DateTime datetime;
+        private bool state;
+        private string note;
+        private string name;
 
-        public CheckbookItem(string cost, string name, DateTime datetime, bool state, string inOrOut, string note)
+        public string CNO
         {
-            this.id = Guid.NewGuid().ToString();
-            this.cost = cost;
-            this.datetime = datetime;
-            this.inOrOut = inOrOut;
-            this.state = state;
-            this.note = note;
-            this.name = name;
+            get { return cno; }
+            set { SetProperty(ref this.cno, value); }
+        }
+
+        public string COST
+        {
+            get { return cost; }
+            set { SetProperty(ref this.cost, value); }
+        }
+
+        public DateTime DATETIME
+        {
+            get { return datetime; }
+            set { SetProperty(ref this.datetime, value); }
+        }
+
+        public bool STATE
+        {
+            get { return state; }
+            set { SetProperty(ref this.state, value); }
+        }
+
+        public string NOTE
+        {
+            get { return note; }
+            set { SetProperty(ref this.note, value); }
+        }
+
+        public string NAME
+        {
+            get { return name; }
+            set { SetProperty(ref this.name, value); }
+        }
+
+        public CheckbookItem(string cost, string name, DateTime datetime, bool state, string note)
+        {
+            this.COST = cost;
+            this.DATETIME = datetime;
+            this.STATE = state;
+            this.NOTE = note;
+            this.NAME = name;
         }
     }
 }

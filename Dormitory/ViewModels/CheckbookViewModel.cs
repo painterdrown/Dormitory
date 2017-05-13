@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using Windows.UI.Xaml.Controls;
-using Dormitory.Models;
 
 namespace Dormitory.ViewModels
 {
@@ -26,17 +18,17 @@ namespace Dormitory.ViewModels
         //删除item
         public void AddCheckbookItem(string cost, string name, DateTime datetime, bool state, string inOrOut, string note)
         {
-            this.allItems.Add(new Models.CheckbookItem(cost, name, datetime, state, inOrOut ,note));
+            this.allItems.Add(new Models.CheckbookItem(cost, name, datetime, state, note));
         }
         //更新item
-        public async Task updateCheckbookItem(string cost, string name, DateTime datetime, bool state, string note)
+        public void updateCheckbookItem(string cost, string name, DateTime datetime, bool state, string note)
         {
             var i = selectedItem;
-            i.cost = cost;
-            i.state = state;
-            i.datetime = datetime;
-            i.note = note;
-            i.name = name;
+            i.COST = cost;
+            i.STATE = state;
+            i.DATETIME = datetime;
+            i.NOTE = note;
+            i.NAME = name;
             selectedItem = null;
         }
     }

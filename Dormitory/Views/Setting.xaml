@@ -114,22 +114,26 @@
             </Grid>
 
             <Image x:Name="userFace"
-                   Grid.Column="1"
-                   Height="250"
-                   Width="250"
-                   VerticalAlignment="Top"
-                   Margin="20"
-                   Tapped="selectPhoto"
-                   Source="../Assets/default.jpg"/>
+               Grid.Column="1"
+               
+               Height="250"
+               Width="250"
+               VerticalAlignment="Top"
+               Margin="20"
+               Source="../Assets/default.jpg"/>
+
+
+
+
 
 
             <Button  Grid.Column="1"
                      Height="250"
                      Width="250"
+                     Click="selectPhoto"
                      VerticalAlignment="Center"
                      HorizontalAlignment="Center"
                      Background="#00000000"/>
-
 
 
         </Grid>

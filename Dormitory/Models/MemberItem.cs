@@ -1,9 +1,5 @@
 ﻿using System;
 using Windows.UI.Xaml.Media;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dormitory.Models
 {
@@ -15,15 +11,24 @@ namespace Dormitory.Models
         public string location { get; set; }
         public int id { get; set; }
         public int random_num { get; set; }
+        string message;
 
-        public MemberItem(ImageSource pic, string name, DateTime birth, string location, int id, int random_num)
+        public MemberItem(ImageSource pic, string name, DateTime birth, string location, int random_num)
         {
             this.pic = pic;
             this.name = name;
             this.birth = birth;
             this.location = location;
-            this.id = id;
             this.random_num = random_num;
+        }
+
+        public MemberItem()
+        {
+            pic = null;
+            birth = DateTime.Now;
+            name = "";
+            location = "";
+            random_num = 0;
         }
     }
 }

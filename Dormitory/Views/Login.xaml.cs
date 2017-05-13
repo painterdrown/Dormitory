@@ -23,7 +23,7 @@ namespace Dormitory.Views
             this.InitializeComponent();
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var vault = new PasswordVault();
             if (vault.RetrieveAll().Count != 0)

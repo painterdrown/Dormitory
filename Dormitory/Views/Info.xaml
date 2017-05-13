@@ -10,6 +10,7 @@
     xmlns:con="using:Dormitory.Converters">
     <Page.Resources>
         <con:ImageToUri x:Key="imageConverter" />
+        <con:DateToString x:Key="DateToString" />
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar  RequestedTheme="Dark" Background="#75C4FF">
@@ -59,8 +60,8 @@
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Background="White"/>
 
-        <Grid Grid.Column="0" Grid.Row="1" Margin="20" Width="416">
-            
+        <Grid Grid.Column="0" Grid.Row="1" Margin="20" Width="432">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -86,7 +87,7 @@
                         <ColumnDefinition Width="104"/>
                         <ColumnDefinition Width="104"/>
                         <ColumnDefinition Width="104"/>
-                        <ColumnDefinition Width="104"/>
+                        <ColumnDefinition Width="120"/>
                     </Grid.ColumnDefinitions>
 
                     <Border BorderThickness="0, 0, 1, 1" BorderBrush="#F2F6FB">
@@ -121,9 +122,9 @@
                     </Border>
                 </Grid>
 
-                <ScrollViewer Grid.Row="1" Height="360" VerticalAlignment="Top">
+                <ScrollViewer Grid.Row="1" Height="360" VerticalAlignment="Top" Margin="-11,0,1,-12" d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition">
                     <StackPanel>
-                        <!--<ListView x:Name="MemberView" IsItemClickEnabled="Ture" ItemsSource="{x:Bind MemberViewModel.MemberItems}">
+                        <ListView x:Name="MemberView" ItemsSource="{x:Bind ViewModel.memberitems}">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="md:MemberItem">
                                     <Grid>
@@ -131,26 +132,26 @@
                                             <ColumnDefinition Width="104"/>
                                             <ColumnDefinition Width="104"/>
                                             <ColumnDefinition Width="104"/>
-                                            <ColumnDefinition Width="104"/>
+                                            <ColumnDefinition Width="120"/>
                                         </Grid.ColumnDefinitions>
-                                        
-                                        <Border BorderThickness="1, 0, 1, 1" BorderBrush="#6FB0C8" Grid.Column="0">
-                                            <Image Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#6FB0C8" />
+
+                                        <Border BorderThickness="0, 0, 1, 1" BorderBrush="#6FB0C8" Grid.Column="0">
+                                            <Image Margin="8" Source="{x:Bind pic}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                         </Border>
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#6FB0C8" Grid.Column="1">
-                                            <TextBlock Text="姓名" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#6FB0C8"/>
+                                            <TextBlock Text="{x:Bind name}" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#6FB0C8"/>
                                         </Border>
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#6FB0C8" Grid.Column="2">
-                                            <TextBlock Text="地区" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#6FB0C8"/>
+                                            <TextBlock Text="{x:Bind location}" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#6FB0C8"/>
                                         </Border>
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#6FB0C8" Grid.Column="3">
-                                            <CheckBox Text="生日" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#6FB0C8"/>
+                                            <TextBlock Text="{x:Bind birth, Converter={StaticResource DateToString}}" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#6FB0C8"/>
                                         </Border>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-                        </ListView>-->
-                        <Button Content="添加新成员" Width="104" BorderBrush="#F2F6FB" BorderThickness="1" Height="40" Background="#E0FFC753" Foreground="#F6FBFE" FontWeight="Bold" FocusVisualPrimaryBrush="#FFFFD100" FocusVisualSecondaryBrush="#FFF2F6FB" />
+                        </ListView>
+                        <Button Click="ToSetting" Content="添加新成员" Width="104" BorderBrush="#F2F6FB" BorderThickness="1" Height="40" Background="#E0FFC753" Foreground="#F6FBFE" FontWeight="Bold" FocusVisualPrimaryBrush="#00FFD100" FocusVisualSecondaryBrush="#00F2F6FB" Margin="12, 0, 0, 0"/>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
@@ -163,7 +164,7 @@
             </Grid.RowDefinitions>
 
             <Border BorderThickness="0, 0, 0, 1" BorderBrush="#F2F6FB" Grid.Column="0">
-                 <TextBlock Text="宿舍日志"
+                <TextBlock Text="宿舍日志"
                        FontSize="16"
                        Foreground="#F2F6FB"
                        HorizontalAlignment="Left"
@@ -180,8 +181,12 @@
                     Click="AddJournalButton_Click"/>
 
             <Grid Grid.Row="1" Margin="0, 0, 20, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="699*"/>
+                    <ColumnDefinition Width="13*"/>
+                </Grid.ColumnDefinitions>
 
-                <ScrollViewer VerticalAlignment="Top" Height="360">
+                <ScrollViewer VerticalAlignment="Top" Height="360" Grid.ColumnSpan="2">
                     <StackPanel>
                         <ListView x:Name="JournalView" IsItemClickEnabled="True" ItemClick="JournalItemClick" ItemsSource="{x:Bind ViewModel.journalitems}">
                             <ListView.ItemTemplate>

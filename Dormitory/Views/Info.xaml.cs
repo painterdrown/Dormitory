@@ -84,6 +84,7 @@ namespace Dormitory.Views
         private void CheckAppButton_Click(object sender, RoutedEventArgs e)
         {
 
+            Frame.Navigate(typeof(Checkbook), null);
         }
         private void AddJournalButton_Click(object sender, RoutedEventArgs e)
         {

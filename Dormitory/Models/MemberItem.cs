@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Media;
 
 namespace Dormitory.Models
 {
-    public class MemberItem :BindableBase
+    class MemberItem :BindableBase
     {
         public ImageSource pic { get; set; }
         public string name { get; set; }

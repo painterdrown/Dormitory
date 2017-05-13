@@ -71,7 +71,7 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Padding="10" Background="#F2F6FB">
-                <TextBlock Text="宿舍费余额：￥100" FontSize="16" Grid.Row="0" Foreground="#6FB0C8"/>
+                <TextBlock x:Name="leftMoney" Text="宿舍费余额：￥100" FontSize="16" Grid.Row="0" Foreground="#6FB0C8"/>
             </Grid>
 
 
@@ -136,7 +136,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#6FB0C8" Grid.Column="0">
-                                            <Image Margin="8" Source="{x:Bind pic}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            <Image Margin="8" Source="{x:Bind pic, Converter={StaticResource imageConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                         </Border>
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#6FB0C8" Grid.Column="1">
                                             <TextBlock Text="{x:Bind name}" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#6FB0C8"/>

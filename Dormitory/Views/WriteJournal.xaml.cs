@@ -108,7 +108,7 @@ namespace Dormitory.Views
                     var fileToSave = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("temp.png", CreationCollisionOption.ReplaceExisting);
                     var stream = await file.OpenReadAsync();
                     var bytes = await  Temp.GetBytesFromStream(stream);
-                   await FileIO.WriteBytesAsync(fileToSave, bytes);
+                    await FileIO.WriteBytesAsync(fileToSave, bytes);
                 }
             }
             else

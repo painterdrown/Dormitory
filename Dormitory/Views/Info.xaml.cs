@@ -20,8 +20,9 @@ namespace Dormitory.Views
             NavigationCacheMode = NavigationCacheMode.Enabled;
         }
         JournalItem JItem;
+        MemberItem MItem;
         InfoViewModel ViewModel = new InfoViewModel();
-
+        ViewModels.MemberViewModel ViewModel_1 { get; set; }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
@@ -34,6 +35,11 @@ namespace Dormitory.Views
                     //database add
                     ViewModel.journalitems.Add(JItem);
                 }
+            }
+            if (typeof(Models.MemberItem) == e.Parameter.GetType())
+            {
+                MItem = (Models.MemberItem)(e.Parameter);
+                ViewModel.memberitems.Add(MItem);
             }
         }
         private void selectPhoto(object sender, RoutedEventArgs e)
@@ -48,7 +54,8 @@ namespace Dormitory.Views
 
         private void ToSetting(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(Setting), "");
+            MemberItem m = null;
+            Frame.Navigate(typeof(Setting), m);
         }
 
         private void CheckAppButton_Click(object sender, RoutedEventArgs e)

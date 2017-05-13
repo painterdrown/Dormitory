@@ -88,8 +88,8 @@ namespace Dormitory.Views
                 {
                     number.Text = "-" + number.Text;
                 }
-                int money = int.Parse(number.Text);
-                int left = int.Parse(leftMoney.Text.ToString().Substring(1));
+                float money = float.Parse(number.Text);
+                float left = float.Parse(leftMoney.Text.ToString().Substring(1));
                 left += money;
                 ViewModel.AddCheckbookItem(number.Text, name, date.Date.DateTime, false, "", tip.Text);
                 leftMoney.Text = "￥" + left.ToString();

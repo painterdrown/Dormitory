@@ -17,6 +17,7 @@ namespace Dormitory.Models
             set { SetProperty(ref this.cno, value); }
         }
 
+
         public string COST
         {
             get { return cost; }

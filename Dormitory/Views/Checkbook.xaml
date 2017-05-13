@@ -161,6 +161,7 @@
                                         <Border BorderThickness="0, 0, 0, 1" BorderBrush="#75C4FF" Grid.Column="4">
 
                                             <CheckBox x:Name="state" IsChecked="{x:Bind STATE, Mode=TwoWay, Converter={StaticResource checkboxTo}}"  Height="32" Width="32" HorizontalAlignment="Center"  Checked="checked_click" Unchecked="unchecked_click"/>
+                                            
                                         </Border>
 
 

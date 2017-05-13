@@ -83,7 +83,7 @@
                     </Grid>
                     <Image Grid.Row="1"
                            Grid.Column="0"
-                           Source="Assets/default.jpg"
+                           Source="../Assets/default.jpg"
                            Width="200" 
                            Height="200" 
                            Stretch="UniformToFill"

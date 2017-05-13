@@ -17,10 +17,15 @@ namespace Dormitory.Views
         public Info()
         {
             this.InitializeComponent();
-            NavigationCacheMode = NavigationCacheMode.Enabled;
+            ViewModel.init(App.account);
         }
         JournalItem JItem;
+
+        MemberItem MItem;
         InfoViewModel ViewModel = new InfoViewModel();
+        ViewModels.MemberViewModel ViewModel_1 { get; set; }
+
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -34,6 +39,20 @@ namespace Dormitory.Views
                     //database add
                     ViewModel.journalitems.Add(JItem);
                 }
+                else if(JItem.message == "update")
+                {
+                    ViewModel.journalitems.Add(JItem);
+                }
+                else if(JItem.message == "delete")
+                {
+                    ViewModel.journalitems.Remove(JItem);
+                }
+                ViewModel.init(App.account);
+            }
+            if (typeof(Models.MemberItem) == e.Parameter.GetType())
+            {
+                MItem = (Models.MemberItem)(e.Parameter);
+                ViewModel.memberitems.Add(MItem);
             }
         }
         private void selectPhoto(object sender, RoutedEventArgs e)
@@ -44,6 +63,12 @@ namespace Dormitory.Views
         private void HomeAppButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ToSetting(object sender, RoutedEventArgs e)
+        {
+            MemberItem m = null;
+            Frame.Navigate(typeof(Setting), m);
         }
 
         private void CheckAppButton_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dormitory.Models;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.ObjectModel;
 
 namespace Dormitory.ViewModels
@@ -9,6 +11,8 @@ namespace Dormitory.ViewModels
         public ObservableCollection<Models.CheckbookItem> AllItems { get { return this.allItems; } }
         private Models.CheckbookItem selectedItem = default(Models.CheckbookItem);
         public Models.CheckbookItem SelectedItem { get { return selectedItem; } set { this.selectedItem = value; } }
+
+        
         //添加
         public void RemoveCheckbookItem(string arg)
         {

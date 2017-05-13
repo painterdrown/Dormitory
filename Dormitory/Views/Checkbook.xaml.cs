@@ -1,4 +1,6 @@
 ﻿using Dormitory.Models;
+using Newtonsoft.Json.Linq;
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -23,18 +25,63 @@ namespace Dormitory.Views
             {
                 //result["errMsg"]
             }*/
+            
+
 
             this.InitializeComponent();
+            //init(App.account);
             this.ViewModel = new ViewModels.CheckbookViewModel();
         }
         ViewModels.CheckbookViewModel ViewModel { get; set; }
 
+        public async void init(string did)
+        {
+            var result = await HttpUtil.GetCheckbook(did);
+            if ((bool)result["ok"])
+            {
+                JArray checkbok = (JArray)result["checkbook"]["items"];
+                if (checkbok != null)
+                {
+                    for (var i = 0; i < checkbok.Count; i++)
+                    {
+                        string cost = (string)checkbok[i]["cost"];
+                        string name = (string)checkbok[i]["name"];
+                        string d = checkbok[i]["time"].ToString();
+                        long hi = long.Parse(d);
+                        DateTime datetim = new DateTime(hi);
+                        string io = (string)checkbok[i]["io"];
+                        bool state = (bool)checkbok[i]["state"];
+                        string note = (string)checkbok[i]["note"];
+                        ViewModel.AddCheckbookItem(cost, name, datetim, state, io, note);
+                    }
+                }
+            }
+            leftMoney.Text = "￥" + (string)result["checkbook"]["balance"];
+
+            result = await HttpUtil.GetCheckbook(did);
+            if ((bool)result["ok"])
+            {
+                JArray members = (JArray)result["names"];
+                if (members != null)
+                {
+                    for (var i = 0; i < members.Count; i++)
+                    {
+                        string n = (string)members[i];
+                        TextBlock tb = new TextBlock();
+                        tb.Text = n;
+                        ComboBox.Items.Add(tb);
+                    }
+                }
+            }
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (typeof(ViewModels.CheckbookViewModel) == e.Parameter.GetType())
-            {
-                ViewModel = (ViewModels.CheckbookViewModel)(e.Parameter);
-            }
+            //if (typeof(ViewModels.CheckbookViewModel) == e.Parameter.GetType())
+            //{
+            //    ViewModel = (ViewModels.CheckbookViewModel)(e.Parameter);
+            //}
+            init(App.account);
         }
 
 
@@ -72,8 +119,10 @@ namespace Dormitory.Views
                     number.Text = "-" + number.Text;
                 }
                 float money = float.Parse(number.Text);
-                float left = float.Parse(leftMoney.Text.ToString().Substring(1));
+                string heheda = leftMoney.Text;
+                float left = float.Parse(leftMoney.Text.Substring(1));
                 left += money;
+                await HttpUtil.AddCheckbookItem(App.account, new CheckbookItem(number.Text, name, date.Date.DateTime, false, tip.Text));
                 ViewModel.AddCheckbookItem(number.Text, name, date.Date.DateTime, false, "", tip.Text);
                 leftMoney.Text = "￥" + left.ToString();
                 str = "￥" + left.ToString();
@@ -84,7 +133,7 @@ namespace Dormitory.Views
             //如果点击了item
             else
             {
-                //await ViewModel.updateCheckbookItem(number.Text, this.ComboBox.SelectedItem.ToString(), date.Date.DateTime, ViewModel.SelectedItem.state, tip.Text);
+                //ViewModel.updateCheckbookItem(number.Text, ComboBox.SelectedItem.ToString(), date.Date.DateTime, ViewModel.SelectedItem.STATE, tip.Text);
                 ViewModel.updateCheckbookItem(number.Text, "sucker", date.Date.DateTime, ViewModel.SelectedItem.STATE, tip.Text);
                 confirmButton.Content = "确定";
                 number.Text = "";
@@ -119,6 +168,7 @@ namespace Dormitory.Views
             if (ViewModel.SelectedItem != null)
             {
                 ViewModel.SelectedItem.STATE = true;
+                await HttpUtil.EditCheckbookItem(App.account, new CheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
                 ViewModel.updateCheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE);
             }
         }
@@ -129,8 +179,14 @@ namespace Dormitory.Views
             if (ViewModel.SelectedItem != null)
             {
                 ViewModel.SelectedItem.STATE = false;
+                await HttpUtil.EditCheckbookItem(App.account, new CheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
                 ViewModel.updateCheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE);
             }
         }
+    }
+
+    class combobox_add
+    {
+        public string text { get; set; }
     }
 }

@@ -58,7 +58,7 @@ namespace Dormitory.Views
             }
             leftMoney.Text = "￥" + (string)result["checkbook"]["balance"];
 
-            result = await HttpUtil.GetCheckbook(did);
+            result = await HttpUtil.GetMemberNames(App.account);
             if ((bool)result["ok"])
             {
                 JArray members = (JArray)result["names"];
@@ -108,7 +108,8 @@ namespace Dormitory.Views
             //如果没有点击item
             if (confirmButton.Content.ToString() == "确定")
             {
-                string name = "sucker";
+                TextBlock tb = (TextBlock)ComboBox.SelectedItem;
+                string name = tb.Text;
                 //var i = new MessageDialog(this.ComboBox1.SelectedIndex.ToString()).ShowAsync();
                 if (this.ComboBox1.SelectedIndex == 0)
                 {

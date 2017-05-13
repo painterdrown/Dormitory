@@ -32,6 +32,8 @@ namespace Dormitory.ViewModels
                     journalitems.Add(J);
                 }
 
+                //JArray M = (JArray)result[""]
+
             }
             else
             {

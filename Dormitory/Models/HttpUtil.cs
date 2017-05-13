@@ -4,8 +4,9 @@ using Windows.System;
 using System.Dynamic;
 using System.IO;
 using System.Net.Http;
-using Windows.System.Threading.Tasks;
 using Windows.Storage;
+using System;
+using System.Threading.Tasks;
 
 namespace Dormitory.Models
 {

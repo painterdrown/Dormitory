@@ -17,10 +17,10 @@ namespace Dormitory.Views
         public Info()
         {
             this.InitializeComponent();
-            NavigationCacheMode = NavigationCacheMode.Enabled;
+            ViewModel.init(App.account);
         }
         JournalItem JItem;
-        InfoViewModel ViewModel = new InfoViewModel();
+        InfoViewModel ViewModel;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -34,6 +34,15 @@ namespace Dormitory.Views
                     //database add
                     ViewModel.journalitems.Add(JItem);
                 }
+                else if(JItem.message == "update")
+                {
+                    ViewModel.journalitems.Add(JItem);
+                }
+                else if(JItem.message == "delete")
+                {
+                    ViewModel.journalitems.Remove(JItem);
+                }
+                ViewModel.init(App.account);
             }
         }
         private void selectPhoto(object sender, RoutedEventArgs e)

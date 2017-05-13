@@ -58,7 +58,6 @@ namespace Dormitory.Views
             }
             else
             {
-                jItem.message = "update";
                 createButton.Content = "更新";
                 cancelButton.Content = "删除";
                 createButton.Click += UpdateButton_Clicked;
@@ -77,12 +76,12 @@ namespace Dormitory.Views
 
         private void CheckAppButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(Checkbook));
         }
 
         private void DutyAppButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(Duty));
         }
 
         private async void selectPhoto(object sender, RoutedEventArgs e)
@@ -126,19 +125,36 @@ namespace Dormitory.Views
                 var uri = (photo.Source as BitmapImage).UriSource;
                 if(uri == null)
                 {
+                    jItem.ImageChange = true;
                     uri = new Uri("ms-appdata:///temp/temp.png");
                 }
                 var content = Details.Text;
                 jItem.pic = uri;
                 jItem.content = content;
-                jItem.date = DateTime.Now;
-
+                jItem.message = "create";
                 Frame.Navigate(typeof(Info), jItem);
             }
         }
         private void UpdateButton_Clicked(object sender, RoutedEventArgs e)
         {
-
+            if (Details.Text == "")
+            {
+                var WrongMessage = new MessageDialog("内容不能为空!").ShowAsync();
+            }
+            else
+            {
+                var uri = (photo.Source as BitmapImage).UriSource;
+                if (uri == null)
+                {
+                    jItem.ImageChange = true;
+                    uri = new Uri("ms-appdata:///temp/temp.png");
+                }
+                var content = Details.Text;
+                jItem.pic = uri;
+                jItem.content = content;
+                jItem.message = "update";
+                Frame.Navigate(typeof(Info), jItem);
+            }
         }
         private void DeleteButton_Clicked(object sender, RoutedEventArgs e)
         {

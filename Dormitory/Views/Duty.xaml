@@ -98,7 +98,8 @@
                             Background="#E0FFC753"
                             Foreground="#F6FBFE"
                             HorizontalAlignment="Center"
-                            FontWeight="Bold"/>
+                            FontWeight="Bold"
+                            Click="RandomButton_Click"/>
                 </Grid>
 
                

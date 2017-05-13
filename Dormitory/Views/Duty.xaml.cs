@@ -41,7 +41,10 @@ namespace Dormitory.Views
         {
 
         }
+        private void RandomButton_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 
    

@@ -5,7 +5,7 @@ using Windows.UI.Popups;
 
 namespace Dormitory.ViewModels
 {
-    class InfoViewModel
+    class InfoViewModel : BindableBase
     {
         //public Dictionary<int, MemberItem> Member_list = new Dictionary<int, MemberItem>();
         public NewObservableCollection<Models.JournalItem> journalitems = new NewObservableCollection<JournalItem>();
@@ -16,11 +16,6 @@ namespace Dormitory.ViewModels
 
         public InfoViewModel()
         {
-            JournalItem j1 = new JournalItem();
-            JournalItem j2 = new JournalItem();
-            j2.content = "init2";
-            journalitems.Add(j1);
-            journalitems.Add(j2);
         }
         public async void init(string did)
         {
@@ -40,8 +35,30 @@ namespace Dormitory.ViewModels
             }
             else
             {
-                var md = new MessageDialog((string)result["info view models init fail!!"]).ShowAsync();
+                var md = new MessageDialog("info view models init fail!!").ShowAsync();
                 return;
+            }
+        }
+
+        public void update(JournalItem j)
+        {
+            for(var i = 0; i < journalitems.Count; i++)
+            {
+                if(journalitems[i].id == j.id)
+                {
+                    journalitems.SetItem(i, j);
+                }
+            }
+        }
+        public void delete(JournalItem j)
+        {
+            for (var i = 0; i < journalitems.Count; i++)
+            {
+                if (journalitems[i].id == j.id)
+                {
+                    var item = journalitems[i];
+                    journalitems.Remove(item);
+                }
             }
         }
     }

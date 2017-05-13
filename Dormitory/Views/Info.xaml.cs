@@ -16,44 +16,54 @@ namespace Dormitory.Views
     {
         public Info()
         {
-            this.InitializeComponent();
+            ViewModel = new InfoViewModel();
             ViewModel.init(App.account);
+            this.InitializeComponent();
         }
         JournalItem JItem;
 
         MemberItem MItem;
-        InfoViewModel ViewModel = new InfoViewModel();
+        InfoViewModel ViewModel;
         ViewModels.MemberViewModel ViewModel_1 { get; set; }
 
 
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
                     AppViewBackButtonVisibility.Collapsed;
-            if (e.Parameter.GetType() == typeof(Models.JournalItem))
+            if (e.Parameter != null)
             {
-                this.JItem = (Models.JournalItem)(e.Parameter);
-                if(JItem.message == "create")
+                if (e.Parameter.GetType() == typeof(Models.JournalItem))
                 {
-                    //database add
-                    ViewModel.journalitems.Add(JItem);
+                    this.JItem = (Models.JournalItem)(e.Parameter);
+                    if (JItem.message == "create")
+                    {
+                        //database add
+                        await HttpUtil.AddJournal(App.account, JItem.content, JItem.ImageChange);
+                        ViewModel.journalitems.Add(JItem);
+                        return;
+                    }
+                    else if (JItem.message == "update")
+                    {
+                        await HttpUtil.EditJournal(JItem.id, JItem.content, JItem.ImageChange);
+                        ViewModel.update(JItem);
+                        return;
+                    }
+                    else if (JItem.message == "delete")
+                    {
+                        await HttpUtil.DeleteJournal(App.account ,JItem.id);
+                        ViewModel.delete(JItem);
+                        return;
+                    }
                 }
-                else if(JItem.message == "update")
+                if (typeof(Models.MemberItem) == e.Parameter.GetType())
                 {
-                    ViewModel.journalitems.Add(JItem);
+                    MItem = (Models.MemberItem)(e.Parameter);
+                    ViewModel.memberitems.Add(MItem);
                 }
-                else if(JItem.message == "delete")
-                {
-                    ViewModel.journalitems.Remove(JItem);
-                }
-                ViewModel.init(App.account);
             }
-            if (typeof(Models.MemberItem) == e.Parameter.GetType())
-            {
-                MItem = (Models.MemberItem)(e.Parameter);
-                ViewModel.memberitems.Add(MItem);
-            }
+            else return;
         }
         private void selectPhoto(object sender, RoutedEventArgs e)
         {

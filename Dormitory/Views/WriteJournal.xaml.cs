@@ -27,7 +27,7 @@ namespace Dormitory.Views
         JournalItem jItem;
         private void App_BackRequested(object sender, BackRequestedEventArgs e)
         {
-            jItem.message = "back";
+            jItem = null;
             Frame.Navigate(typeof(Info), jItem);
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -49,18 +49,19 @@ namespace Dormitory.Views
             if (jItem == null)
             {
                 jItem = new JournalItem();
-                jItem.message = "create";
+
                 createButton.Content = "发布";
-                createButton.Click += CreateButton_Clicked;
                 cancelButton.Content = "清空";
-                cancelButton.Click += ClearButton_Clicked;
                 var i = new MessageDialog("欢迎发布日志").ShowAsync();
             }
             else
             {
                 createButton.Content = "更新";
                 cancelButton.Content = "删除";
+                createButton.Click -= CreateButton_Clicked;
                 createButton.Click += UpdateButton_Clicked;
+
+                cancelButton.Click -= ClearButton_Clicked;
                 cancelButton.Click += DeleteButton_Clicked;
                 var i = new MessageDialog("欢迎修改你的日志").ShowAsync();
 
@@ -125,7 +126,7 @@ namespace Dormitory.Views
                 var uri = (photo.Source as BitmapImage).UriSource;
                 if(uri == null)
                 {
-                    jItem.ImageChange = true;
+                    jItem.ImageChange = false;
                     uri = new Uri("ms-appdata:///temp/temp.png");
                 }
                 var content = Details.Text;
@@ -146,7 +147,7 @@ namespace Dormitory.Views
                 var uri = (photo.Source as BitmapImage).UriSource;
                 if (uri == null)
                 {
-                    jItem.ImageChange = true;
+                    jItem.ImageChange = false;
                     uri = new Uri("ms-appdata:///temp/temp.png");
                 }
                 var content = Details.Text;

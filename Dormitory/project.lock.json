@@ -1,4 +1,5 @@
 {
+  "locked": false,
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
@@ -17449,14 +17450,14 @@
       ]
     },
     "Microsoft.NETCore.UniversalWindowsPlatform/5.2.3": {
-      "sha512": "xsOO1wxNtqhPdYoNfI96fTG9xrECOqBmqwVbarRuQinQ+sZKSI604Bi2S2cPHHAogHwbs3Lzgooi5KYffvOlpQ==",
+      "sha512": "j9TvGPvxH42R7hZ4AzhSO7WdWWbDxtw69RbM2YzV2wAOnUf8MHRv3DTRT1oV0amPW779/HLr7YJuRF6QByaOAA==",
       "type": "package",
-      "path": "microsoft.netcore.universalwindowsplatform/5.2.3",
+      "path": "Microsoft.NETCore.UniversalWindowsPlatform/5.2.3",
       "files": [
+        "Microsoft.NETCore.UniversalWindowsPlatform.5.2.3.nupkg.sha512",
+        "Microsoft.NETCore.UniversalWindowsPlatform.nuspec",
         "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "microsoft.netcore.universalwindowsplatform.5.2.3.nupkg.sha512",
-        "microsoft.netcore.universalwindowsplatform.nuspec"
+        "dotnet_library_license.txt"
       ]
     },
     "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
@@ -23879,43 +23880,6 @@
     ],
     "UAP,Version=v10.0": []
   },
-  "packageFolders": {
-    "C:\\Users\\zkb22\\.nuget\\packages\\": {}
-  },
-  "project": {
-    "restore": {
-      "projectUniqueName": "C:\\Users\\zkb22\\Documents\\CodeSpace\\UWP\\Dormitory\\Dormitory\\Dormitory.csproj",
-      "projectName": "Dormitory",
-      "projectPath": "C:\\Users\\zkb22\\Documents\\CodeSpace\\UWP\\Dormitory\\Dormitory\\Dormitory.csproj",
-      "projectJsonPath": "C:\\Users\\zkb22\\Documents\\CodeSpace\\UWP\\Dormitory\\Dormitory\\project.json",
-      "projectStyle": "ProjectJson"
-    },
-    "dependencies": {
-      "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.3",
-      "Newtonsoft.Json": "10.0.2"
-    },
-    "frameworks": {
-      "uap10.0": {}
-    },
-    "runtimes": {
-      "win10-arm": {
-        "#import": []
-      },
-      "win10-arm-aot": {
-        "#import": []
-      },
-      "win10-x64": {
-        "#import": []
-      },
-      "win10-x64-aot": {
-        "#import": []
-      },
-      "win10-x86": {
-        "#import": []
-      },
-      "win10-x86-aot": {
-        "#import": []
-      }
-    }
-  }
+  "tools": {},
+  "projectFileToolGroups": {}
 }

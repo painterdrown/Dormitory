@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Dormitory.Models
 {
-    class JournalItem
+    class JournalItem : BindableBase
     {
         public long id { get; set; }
         public DateTimeOffset date { get; set; }
@@ -14,8 +15,11 @@ namespace Dormitory.Models
         public string content { get; set; }
         public string message;
         public bool ImageChange;
+
+
         public JournalItem()
         {
+            ImageChange = true;
             date = DateTime.Now;
             content = "init";
             pic = new Uri("ms-appx:///Assets/default.jpg");

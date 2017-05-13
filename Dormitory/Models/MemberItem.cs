@@ -5,10 +5,10 @@ namespace Dormitory.Models
 {
     class MemberItem :BindableBase
     {
-<<<<<<< HEAD
+
         public Uri pic { get; set; }
-=======
->>>>>>> origin/master
+
+
         public string name { get; set; }
         public DateTime birth { get; set; }
         public string location { get; set; }
@@ -16,11 +16,18 @@ namespace Dormitory.Models
         public int random_num { get; set; }
         string message;
 
-<<<<<<< HEAD
+
         public MemberItem(Uri pic, string name, DateTime birth, string location, int random_num)
-=======
+        {
+            this.pic = pic;
+            this.name = name;
+            this.birth = birth;
+            this.location = location;
+            this.random_num = random_num;
+        }
+
         public MemberItem(string name, DateTime birth, string location, int random_num)
->>>>>>> origin/master
+
         {
             this.name = name;
             this.birth = birth;

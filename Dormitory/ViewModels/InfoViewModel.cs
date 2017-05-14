@@ -29,6 +29,7 @@ namespace Dormitory.ViewModels
                     J.id = (long)journals[i]["jid"];
                     J.content = (string)journals[i]["content"];
                     J.pic = new System.Uri("http://www.sysu7s.cn:3000/api/dormitory/get-journal-image/" + J.id);
+                    
                     journalitems.Add(J);
                 }
             }

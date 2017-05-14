@@ -48,11 +48,12 @@ namespace Dormitory.Views
                         string name = (string)checkbok[i]["name"];
                         string d = checkbok[i]["time"].ToString();
                         long hi = long.Parse(d);
+                        string cno = checkbok[i]["_id"].ToString();
                         DateTime datetim = new DateTime(hi);
                         string io = (string)checkbok[i]["io"];
                         bool state = (bool)checkbok[i]["state"];
                         string note = (string)checkbok[i]["note"];
-                        ViewModel.AddCheckbookItem(cost, name, datetim, state, io, note);
+                        ViewModel.AddCheckbookItem(cno, cost, name, datetim, state, io, note);
                     }
                 }
             }
@@ -101,7 +102,7 @@ namespace Dormitory.Views
         }
 
 
-
+        private CheckbookItem ck;
         private async void confirmButton_click(object sender, RoutedEventArgs e)
         {
             string str;
@@ -123,8 +124,9 @@ namespace Dormitory.Views
                 string heheda = leftMoney.Text;
                 float left = float.Parse(leftMoney.Text.Substring(1));
                 left += money;
-                await HttpUtil.AddCheckbookItem(App.account, new CheckbookItem(number.Text, name, date.Date.DateTime, false, tip.Text));
-                ViewModel.AddCheckbookItem(number.Text, name, date.Date.DateTime, false, "", tip.Text);
+                ck = new CheckbookItem(number.Text, name, date.Date.DateTime, false, tip.Text);
+                await HttpUtil.AddCheckbookItem(App.account, ck);
+                ViewModel.AddCheckbookItem(ck.CNO, ck.COST, ck.NAME, ck.DATETIME, false, "", ck.NOTE);
                 leftMoney.Text = "￥" + left.ToString();
                 str = "￥" + left.ToString();
                 leftMoney.Text = str;
@@ -134,8 +136,11 @@ namespace Dormitory.Views
             //如果点击了item
             else
             {
-                //ViewModel.updateCheckbookItem(number.Text, ComboBox.SelectedItem.ToString(), date.Date.DateTime, ViewModel.SelectedItem.STATE, tip.Text);
-                ViewModel.updateCheckbookItem(number.Text, "sucker", date.Date.DateTime, ViewModel.SelectedItem.STATE, tip.Text);
+                //ViewModel.SelectedItem = (Models.CheckbookItem)(e.ClickedItem);
+                TextBlock tb = (TextBlock)ComboBox.SelectedItem;
+                string name = tb.Text;
+                await HttpUtil.EditCheckbookItem(App.account, new CheckbookItem(ViewModel.SelectedItem.CNO, ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
+                ViewModel.updateCheckbookItem(number.Text, name, date.Date.DateTime, ViewModel.SelectedItem.STATE, tip.Text);
                 confirmButton.Content = "确定";
                 number.Text = "";
                 tip.Text = "";
@@ -147,9 +152,22 @@ namespace Dormitory.Views
 
         private void item_click(object sender, ItemClickEventArgs e)
         {
+            //ViewModel.SelectedItem = (sender as CheckBox).DataContext as CheckbookItem;
+            ViewModel.SelectedItem = (Models.CheckbookItem)(e.ClickedItem);
             ComboBox1.IsEnabled = false;
             number.IsReadOnly = true;
             confirmButton.Content = "更改";
+            string name = ViewModel.SelectedItem.NAME;
+            int h;
+            for (h = 0; h < ComboBox.Items.Count; h++)
+            {
+                TextBlock tbx = (TextBlock)ComboBox.Items[h];
+                if (tbx.Text == name)
+                {
+                    break;
+                }
+            }
+            ComboBox.SelectedIndex = h;
             ViewModel.SelectedItem = (Models.CheckbookItem)(e.ClickedItem);
             var i = ViewModel.SelectedItem;
             number.Text = i.COST;
@@ -169,7 +187,7 @@ namespace Dormitory.Views
             if (ViewModel.SelectedItem != null)
             {
                 ViewModel.SelectedItem.STATE = true;
-                await HttpUtil.EditCheckbookItem(App.account, new CheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
+                await HttpUtil.EditCheckbookItem(App.account, new CheckbookItem(ViewModel.SelectedItem.CNO, ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
                 ViewModel.updateCheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE);
             }
         }
@@ -180,7 +198,7 @@ namespace Dormitory.Views
             if (ViewModel.SelectedItem != null)
             {
                 ViewModel.SelectedItem.STATE = false;
-                await HttpUtil.EditCheckbookItem(App.account, new CheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
+                await HttpUtil.EditCheckbookItem(App.account, new CheckbookItem(ViewModel.SelectedItem.CNO, ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
                 ViewModel.updateCheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE);
             }
         }

@@ -32,6 +32,10 @@ namespace Dormitory.Views
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
                     AppViewBackButtonVisibility.Collapsed;
+
+            var left = await HttpUtil.GetCheckbook(App.account);
+            leftMoney.Text = "宿舍余额：￥" + (string)left["checkbook"]["balance"];
+
             if (e.Parameter != null)
             {
                 if (e.Parameter.GetType() == typeof(Models.JournalItem))
@@ -60,7 +64,7 @@ namespace Dormitory.Views
                 if (typeof(Models.MemberItem) == e.Parameter.GetType())
                 {
                     MItem = (Models.MemberItem)(e.Parameter);
-                    ViewModel.memberitems.Add(MItem);
+                    //ViewModel.memberitems.Add(MItem);
                 }
             }
             else return;

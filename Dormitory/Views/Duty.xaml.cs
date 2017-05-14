@@ -28,16 +28,18 @@ namespace Dormitory.Views
         {
             ViewModel = new DutyViewModel();
             this.InitializeComponent();
+            ViewModel.init(App.account);
         }
         DutyViewModel ViewModel;
+
         private void HomeAppButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            Frame.Navigate(typeof(Info), "");
         }
 
         private void CheckAppButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(Checkbook), "");
         }
 
         private void DutyAppButton_Click(object sender, RoutedEventArgs e)
@@ -84,6 +86,7 @@ namespace Dormitory.Views
             var result = await HttpUtil.GetMemberNames(App.account);  //狗哥把这段改为直接从mem_List拿名字
             string name = (string)result["names"][no];
             DutyItem D = new DutyItem(no, name, date, note);
+            ViewModel.dutyitems.Add(D);
             await HttpUtil.AddDuty(App.account, D);
 
         }

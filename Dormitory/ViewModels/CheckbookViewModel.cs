@@ -24,10 +24,15 @@ namespace Dormitory.ViewModels
         {
             this.allItems.Add(new Models.CheckbookItem(cost, name, datetime, state, note));
         }
+        public void AddCheckbookItem(string cno, string cost, string name, DateTime datetime, bool state, string inOrOut, string note)
+        {
+            this.allItems.Add(new Models.CheckbookItem(cno, cost, name, datetime, state, note));
+        }
         //更新item
         public void updateCheckbookItem(string cost, string name, DateTime datetime, bool state, string note)
         {
             var i = selectedItem;
+            //i.CNO = CNO.ToString();
             i.COST = cost;
             i.STATE = state;
             i.DATETIME = datetime;

@@ -48,6 +48,15 @@ namespace Dormitory.Models
             set { SetProperty(ref this.name, value); }
         }
 
+        public CheckbookItem(string cno, string cost, string name, DateTime datetime, bool state, string note)
+        {
+            this.CNO = cno;
+            this.COST = cost;
+            this.DATETIME = datetime;
+            this.STATE = state;
+            this.NOTE = note;
+            this.NAME = name;
+        }
         public CheckbookItem(string cost, string name, DateTime datetime, bool state, string note)
         {
             this.COST = cost;

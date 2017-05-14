@@ -51,7 +51,7 @@ namespace Dormitory.Models
             birth = DateTime.Now;
             name = "";
             location = "";
-            random_num = 0;
+            random_num = 1;
         }
     }
 }

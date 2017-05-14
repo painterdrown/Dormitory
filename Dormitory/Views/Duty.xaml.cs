@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
@@ -55,12 +56,12 @@ namespace Dormitory.Views
             double[] pro = new double[ViewModel.countitems.Count];
             for (int i = 0; i < ViewModel.countitems.Count; i++)
             {
-                double a = 1 / ViewModel.countitems[i].count;
+                double a = 1.0/ (double)ViewModel.countitems[i].count;
                 TotalCount += a;
             }
             for (int i = 0; i < ViewModel.countitems.Count; i++)
             {
-                double a = 1 / ViewModel.countitems[i].count;
+                double a = 1.0 / (double)ViewModel.countitems[i].count;
                 if (i == 0)
                 {
                     pro[i] = a / TotalCount;
@@ -91,10 +92,16 @@ namespace Dormitory.Views
                     if (random < pro[i])
                     {
                         no = i;
+                        for (int j = 0; i < ViewModel.state.Length; i++)
+                        {
+                            ViewModel.state[i] = false;
+                        }
                         break;
                     }
                 }
             }
+            this.pict.Source = new BitmapImage(ViewModel.memberitems[no].pic);
+            //(pict.Source as BitmapImage).UriSource = ViewModel.memberitems[no].pic;
             DateTime date = DateTime.Now;
             string note = Note.Text;
             var result = await HttpUtil.GetMemberNames(App.account);  //狗哥把这段改为直接从mem_List拿名字

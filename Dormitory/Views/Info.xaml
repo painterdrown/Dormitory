@@ -137,7 +137,6 @@
 
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#6FB0C8" Grid.Column="0">
                                             <Image Margin="8" Width="40" Height="40" Source="{x:Bind pic, Converter={StaticResource imageConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-
                                         </Border>
                                         
                                         <Border BorderThickness="0, 0, 1, 1" BorderBrush="#6FB0C8" Grid.Column="1">

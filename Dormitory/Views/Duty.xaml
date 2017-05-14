@@ -87,7 +87,8 @@
                                  Header="随机事件" Name="Note"/>
                         
                     </Grid>
-                    <Image Grid.Row="1"
+                    <Image x:Name="pict"
+                           Grid.Row="1"
                            Grid.Column="0"
                            Source="../Assets/default.jpg"
                            Width="200" 

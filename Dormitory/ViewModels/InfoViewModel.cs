@@ -31,14 +31,27 @@ namespace Dormitory.ViewModels
                     J.pic = new System.Uri("http://www.sysu7s.cn:3000/api/dormitory/get-journal-image/" + J.id);
                     journalitems.Add(J);
                 }
-
-                //JArray M = (JArray)result[""]
-
             }
             else
             {
                 var md = new MessageDialog("info view models init fail!!").ShowAsync();
                 return;
+            }
+            result = await HttpUtil.GetMembers(did);
+            if ((bool)result["ok"])
+            {
+                JArray member = (JArray)result["members"];
+                for (var i = 0; i < member.Count; i++)
+                {
+                    string mno = (string)member[i]["mno"];
+                    MemberItem m = new MemberItem();
+                    m.name = (string)member[i]["name"];
+                    long second = (long)member[i]["birth"];
+                    m.birth = new System.DateTime(second);
+                    m.pic = new System.Uri("http://www.sysu7s.cn:3000/api/dormitory//get-member-image/" + App.account + "/" + mno);
+                    m.location = (string)member[i]["location"];
+                    memberitems.Add(m);
+                }
             }
         }
 

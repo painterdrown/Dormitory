@@ -130,8 +130,7 @@ namespace Dormitory.Models
         {
             var param = new JObject();
             param["did"] = did;
-            var ret = await PostForJObject(param, "/get-member-names");
-            return ret;
+            return await PostForJObject(param, "/get-member-names");
         }
 
         /** 获取所有成员的信息
@@ -158,11 +157,11 @@ namespace Dormitory.Models
             return await PostForJObject(param, "/add-checkbook-item");
         }
 
-        public static async Task<JObject> EditCheckbookItem(string did, CheckbookItem item)
+        public static async Task<JObject> EditCheckbookItem(string did, int cno, CheckbookItem item)
         {
             var param = new JObject();
             param["did"] = did;
-            param["cno"] = item.CNO;
+            param["cno"] = cno;
             param["name"] = item.NAME;
             param["time"] = item.DATETIME.Ticks;
             param["cost"] = float.Parse(item.COST);
@@ -183,11 +182,11 @@ namespace Dormitory.Models
             return await PostForJObject(param, "/get-checkbook");
         }
 
-        public static async Task<JObject> AddDuty(string did, DutyItem item)
+        public static async Task<JObject> AddDuty(string did, int mno, DutyItem item)
         {
             var param = new JObject();
             param["did"] = did;
-            param["cno"] = item.cno;
+            param["mno"] = mno;
             param["name"] = item.name;
             param["time"] = item.time.Ticks;
             param["note"] = item.note;
@@ -204,39 +203,6 @@ namespace Dormitory.Models
             var param = new JObject();
             param["did"] = did;
             return await PostForJObject(param, "/get-duties");
-        }
-
-        private static async void test()
-        {
-            //await HttpUtil.Register("test", "test");
-            //await HttpUtil.Register("test", "test");  // 重复注册
-            //await HttpUtil.Login("test", "test1");  // 密码错误
-            //await HttpUtil.Login("test", "test");
-
-            //await HttpUtil.AddJournal("test", "111111", true);
-            //await HttpUtil.AddJournal("test", "222222", false);
-            //await HttpUtil.AddJournal("test", "333333", false);
-            //var res = await HttpUtil.GetJournals("test");
-            //var journals = res["journals"];
-            //await HttpUtil.EditJournal((long)journals[0]["jid"], "zz脱单了！", true);
-            //await HttpUtil.EditJournal((long)journals[1]["jid"], "zz又成单身狗啦！", true);
-            //await HttpUtil.DeleteJournal("test", (long)journals[2]["jid"]);
-
-            //await HttpUtil.AddMember("test", new MemberItem(null, "zz", new System.DateTime(1997, 5, 4), "cz", 1));
-            //await HttpUtil.AddMember("test", new MemberItem(null, "bc", new System.DateTime(1997, 5, 4), "cz", 1), false);
-            //await HttpUtil.AddMember("test", new MemberItem(null, "zy", new System.DateTime(1997, 5, 4), "cz", 1));
-            //await HttpUtil.AddMember("test", new MemberItem(null, "xt", new System.DateTime(1997, 5, 4), "cz", 1));
-
-            //await HttpUtil.GetMemberNames("test");
-
-            //await HttpUtil.AddCheckbookItem("test", new CheckbookItem("-11.5", "zz", new System.DateTime(2017, 5, 4), false, "买TT"));
-            //await HttpUtil.AddCheckbookItem("test", new CheckbookItem("400", "zz", new System.DateTime(2017, 5, 4), false, "收宿舍费"));
-            //await HttpUtil.EditCheckbookItem("test", new CheckbookItem("-11.5", "zz", new System.DateTime(2017, 5, 4), true, "买TT"));
-            //await HttpUtil.GetCheckbook("test");
-
-            //await HttpUtil.AddDuty("test", new DutyItem(0, "zz", new System.DateTime(2017, 1, 1), "拿外卖"));
-            //await HttpUtil.AddDuty("test", new DutyItem(2, "zy", new System.DateTime(2017, 1, 2), "拿外卖"));
-            //await HttpUtil.GetDuties("test");
         }
     }
 }

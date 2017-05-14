@@ -11,6 +11,6 @@ namespace Dormitory.Models
         public int no;
         public int count;
         public string name;
-
+        public bool state;
     }
 }

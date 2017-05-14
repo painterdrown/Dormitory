@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<tile>
+  <visual>
+    <binding template="TileSmall">
+      <text>Content</text>
+      <image src="Assets\Images\default.png" placement="background"/>
+    </binding>
+    <binding template="TileMedium">
+      <text>Content</text>
+      <image src="Assets\Images\default.png" placement="background"/>
+    </binding>
+    <binding template="TileWide">
+      <text>Content</text>
+      <text hint-style="captionSubtle">Time</text>
+      <image src="Assets\Images\default.png" placement="background"/>
+    </binding>
+  </visual>
+</tile>

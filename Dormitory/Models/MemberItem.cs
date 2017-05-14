@@ -12,7 +12,8 @@ namespace Dormitory.Models
         public string name { get; set; }
         public DateTime birth { get; set; }
         public string location { get; set; }
-        public int id { get; set; }
+        public int mno { get; set; }
+
         public int random_num { get; set; }
         string message;
 
@@ -24,6 +25,16 @@ namespace Dormitory.Models
             this.birth = birth;
             this.location = location;
             this.random_num = random_num;
+        }
+
+        public MemberItem(Uri pic, string name, DateTime birth, string location, int random_num, int mno)
+        {
+            this.pic = pic;
+            this.name = name;
+            this.birth = birth;
+            this.location = location;
+            this.random_num = random_num;
+            this.mno = mno;
         }
 
         public MemberItem(string name, DateTime birth, string location, int random_num)

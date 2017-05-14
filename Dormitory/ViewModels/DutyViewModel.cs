@@ -13,8 +13,14 @@ namespace Dormitory.ViewModels
     {
         public NewObservableCollection<Models.DutyItem> dutyitems = new NewObservableCollection<Models.DutyItem>();
         public NewObservableCollection<Models.CountItem> countitems = new NewObservableCollection<Models.CountItem>();
+        public NewObservableCollection<Models.MemberItem> memberitems = new NewObservableCollection<Models.MemberItem>();
+        public bool[] state;
         public async void init(string did)
         {
+            state = new bool[50];
+            for (int i = 0; i < 50; i++) {
+                state[i] = false;
+            }
             var result = await HttpUtil.GetDuties(did);
             if ((bool)result["ok"])
             {
@@ -35,7 +41,7 @@ namespace Dormitory.ViewModels
                     CountItem C = new CountItem();
                     C.count = (int)counts[i]["count"];
                     C.name = (string)counts[i]["name"];
-                    C.no = (int)counts[i]["no"];
+                    C.no = (int)counts[i]["mno"];
                     countitems.Add(C);
                 }
 
@@ -44,6 +50,22 @@ namespace Dormitory.ViewModels
             {
                 var md = new MessageDialog("duty models init fail!!").ShowAsync();
                 return;
+            }
+            result = await HttpUtil.GetMembers(App.account);
+            if ((bool)result["ok"])
+            {
+                JArray member = (JArray)result["members"];
+                for (var i = 0; i < member.Count; i++)
+                {
+                    string mno = (string)member[i]["mno"];
+                    MemberItem m = new MemberItem();
+                    m.name = (string)member[i]["name"];
+                    long second = (long)member[i]["birth"];
+                    m.birth = new System.DateTime(second);
+                    m.pic = new System.Uri("http://www.sysu7s.cn:3000/api/dormitory//get-member-image/" + App.account + "/" + mno);
+                    m.location = (string)member[i]["location"];
+                    memberitems.Add(m);
+                }
             }
         }
     }

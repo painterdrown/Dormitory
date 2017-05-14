@@ -276,7 +276,7 @@
                          HorizontalAlignment="Left"
                          Margin="0, 10, 0, 0"
                          FontSize="16"/>
-                <Button Content="分享账本" Grid.Column="1" Height="33" VerticalAlignment="Bottom" Width="120" Background= "#75C4FF" Foreground="White" />
+                <Button Content="分享账本" Grid.Column="1" Height="33" VerticalAlignment="Bottom" Width="120" Background= "#75C4FF" Foreground="White" Click="ShareCheckbook" />
             </Grid>
         </Grid>
     </Grid>

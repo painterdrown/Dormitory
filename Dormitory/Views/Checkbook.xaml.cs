@@ -1,6 +1,10 @@
 ﻿using Dormitory.Models;
 using Newtonsoft.Json.Linq;
 using System;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -9,30 +13,17 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Dormitory.Views
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
     public sealed partial class Checkbook : Page
     {
+        private CheckbookItem ck;
+        ViewModels.CheckbookViewModel ViewModel { get; set; }
+        private DataTransferManager DTM;
 
         public Checkbook()
         {
-            /*var result = await HttpUtil.Login();
-            if ((bool)result["ok"])
-            {
-
-            } else
-            {
-                //result["errMsg"]
-            }*/
-            
-
-
             this.InitializeComponent();
-            //init(App.account);
             this.ViewModel = new ViewModels.CheckbookViewModel();
         }
-        ViewModels.CheckbookViewModel ViewModel { get; set; }
 
         public async void init(string did)
         {
@@ -83,8 +74,43 @@ namespace Dormitory.Views
             //    ViewModel = (ViewModels.CheckbookViewModel)(e.Parameter);
             //}
             init(App.account);
+
+            // 设置共享源
+            DTM = DataTransferManager.GetForCurrentView();
+            DTM.DataRequested += DTM_DataRequested;
         }
 
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            DTM.DataRequested -= DTM_DataRequested;
+        }
+
+        private async void DTM_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            DataPackage data = args.Request.Data;
+            data.Properties.Title = App.account + "'s Checkbook";
+            var content = "";
+            for (int i = 0; i < ViewModel.AllItems.Count; ++i)
+            {
+                var item = ViewModel.AllItems[i];
+                content += item.DATETIME.ToString().Substring(0, 9) + "\t" + item.COST + "￥\t" + item.NAME + "\t" + item.NOTE + "\n";
+            }
+            content += "======================\n";
+            content += "当前余额：" + leftMoney.Text;
+            data.SetText(content);
+
+            DataRequestDeferral GetFiles = args.Request.GetDeferral();
+            try
+            {
+                StorageFile imageFile = await Package.Current.InstalledLocation.GetFileAsync("Assets\\checkbook.jpg");
+                data.Properties.Thumbnail = RandomAccessStreamReference.CreateFromFile(imageFile);
+                data.SetBitmap(RandomAccessStreamReference.CreateFromFile(imageFile));
+            }
+            finally
+            {
+                GetFiles.Complete();
+            }
+        }
 
         private void HomeAppButton_Click(object sender, RoutedEventArgs e)
         {
@@ -101,8 +127,6 @@ namespace Dormitory.Views
             Frame.Navigate(typeof(Duty), "");
         }
 
-
-        private CheckbookItem ck;
         private async void confirmButton_click(object sender, RoutedEventArgs e)
         {
             string str;
@@ -202,6 +226,11 @@ namespace Dormitory.Views
                 await HttpUtil.EditCheckbookItem(App.account, int.Parse(ViewModel.SelectedItem.CNO), new CheckbookItem(ViewModel.SelectedItem.CNO, ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
                 ViewModel.updateCheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE);
             }
+        }
+
+        private void ShareCheckbook(object sender, RoutedEventArgs e)
+        {
+            DataTransferManager.ShowShareUI();
         }
     }
 

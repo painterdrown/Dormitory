@@ -90,6 +90,7 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\background_login.jpg" />
+    <Content Include="Assets\checkbook.jpg" />
     <Content Include="Assets\fonts\方正清刻本悦宋简体.TTF" />
     <Content Include="Assets\tile1.jpg" />
     <Content Include="Assets\tile2.jpg" />

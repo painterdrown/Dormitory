@@ -7,44 +7,62 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
-        <Grid.Background>
-            <ImageBrush Stretch="Fill"
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
+            <Grid.Background>
+                <ImageBrush Stretch="Fill"
                         ImageSource="../Assets/background_login.jpg"/>
-        </Grid.Background>
+            </Grid.Background>
 
-        <Grid Background="#80FFFFFF">
+            <Grid Background="#80FFFFFF">
+                <UserControl>
+                    <Grid Grid.Row="0"
+                      Width="900"
+                      VerticalAlignment="Center">
 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="0"
-                  Width="900"
-                  VerticalAlignment="Center">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="VisualStateGroup">
+                            <VisualState x:Name="VisualStateMin0">
+                                <VisualState.Setters>
+                                    <Setter Target="intro.(UIElement.Visibility)" Value="Collapsed"/>
+                                </VisualState.Setters>
+                                <VisualState.StateTriggers>
+                                    <AdaptiveTrigger MinWindowWidth="0"/>
+                                </VisualState.StateTriggers>
+                            </VisualState>
+                            <VisualState x:Name="VisualStateMin950">
+                                <VisualState.StateTriggers>
+                                    <AdaptiveTrigger MinWindowWidth="950"/>
+                                </VisualState.StateTriggers>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                    <Grid  x:Name="intro"  Grid.Column="0" Width="500" Visibility="Visible">
+                        <Grid.Background>
+                            <LinearGradientBrush EndPoint="0.8,0.8" StartPoint="0.7,0.2">
+                                <GradientStop Color="#A075C4FF" Offset="0"/>
+                                <GradientStop Color="#A0F1C373" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
 
-                <Grid Grid.Column="0" Width="500">
-                    <Grid.Background>
-                        <LinearGradientBrush EndPoint="0.8,0.8" StartPoint="0.7,0.2">
-                            <GradientStop Color="#A075C4FF" Offset="0"/>
-                            <GradientStop Color="#A0CDDBEA" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Grid.Row="0"
+                        <TextBlock Grid.Row="0"
                                Text="宿舍宝"
                                Margin="48, 48, 48, 24"
                                VerticalAlignment="Bottom"
                                Foreground="AliceBlue"
                                FontSize="48" FontWeight="Bold" FontFamily="Assets/fonts/方正清刻本悦宋简体.TTF#方正清刻本悦宋简体"/>
-                    <TextBlock Grid.Row="1"
+                        <TextBlock Grid.Row="1"
                                FontSize="48"
                                Margin="48, 24, 48, 48"
                                VerticalAlignment="Top"
@@ -52,46 +70,46 @@
                                Foreground="AliceBlue"
                                Text="你的宿舍小管家" FontWeight="Bold" FontFamily="Assets/fonts/方正清刻本悦宋简体.TTF#方正清刻本悦宋简体"/>
 
-                </Grid>
-                
-                <Grid Grid.Column="1" Width="Auto" Height="Auto" Background="#F2F6FB">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid Background="#75C4FF"
+                    </Grid>
+
+                    <Grid Grid.Column="1" Width="400" Height="Auto" Background="#F2F6FB">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Background="#75C4FF"
                           Grid.Row="0"
                           BorderBrush="AliceBlue"
                           BorderThickness="2, 2, 2, 0"
                           FocusVisualPrimaryBrush="#FFA6A3A3" 
                           FocusVisualSecondaryBrush="#99D1CDCD">
-                        <TextBlock Text="宿舍宝"
+                            <TextBlock Text="宿舍宝"
                                    FontFamily="Assets/fonts/方正清刻本悦宋简体.TTF#方正清刻本悦宋简体"
                                    HorizontalAlignment="Center"
                                    FontSize="32"
                                    Margin="24"
                                    Foreground="White" FontWeight="Bold"/>
-                    </Grid>
-                    
-                    <Grid Grid.Row="1"
+                        </Grid>
+
+                        <Grid Grid.Row="1"
                           BorderBrush="#75C4FF"
                           BorderThickness="2, 0, 2, 2"
                           FocusVisualPrimaryBrush="#FFA6A3A3" 
                           FocusVisualSecondaryBrush="#99D1CDCD">
-                        <Pivot Grid.Row="1" Margin="46, 24, 46, 24">
-                            <PivotItem Header="登陆">
-                                <Grid Grid.Row="1" Margin="0, 24, 0, 0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <TextBox x:Name="AccountTB"
+                            <Pivot Grid.Row="1" Margin="46, 24, 46, 24">
+                                <PivotItem Header="登陆">
+                                    <Grid Grid.Row="1" Margin="0, 24, 0, 0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBox x:Name="AccountTB"
                                              Grid.Row="0"
                                              Width="280"
                                              Height="Auto"
@@ -99,7 +117,7 @@
                                              PlaceholderText="请输入账号"
                                              HorizontalAlignment="Left"
                                              LostFocus="AccountTB_LostFocus"/>
-                                    <PasswordBox x:Name="PasswordPB"
+                                        <PasswordBox x:Name="PasswordPB"
                                          Grid.Row="2"
                                          Width="280"
                                          Height="Auto"
@@ -107,7 +125,7 @@
                                          PlaceholderText="请输入密码"
                                          HorizontalAlignment="Left"
                                          Margin="0, 24, 0, 0"/>
-                                    <Button x:Name="LoginBT"
+                                        <Button x:Name="LoginBT"
                                             Grid.Row="4"
                                             Grid.Column="0"
                                             Width="280"
@@ -121,24 +139,24 @@
                                             FocusVisualPrimaryBrush="#FFFDFDFD"
                                             FontFamily="Microsoft YaHei"
                                             Click="LoginBT_Click"/>
-                                </Grid>
-                            </PivotItem>
-                            <PivotItem Header="注册">
-                                <Grid Grid.Row="1" Margin="0, 24, 0, 0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <TextBox x:Name="AccountRegTB"
+                                    </Grid>
+                                </PivotItem>
+                                <PivotItem Header="注册">
+                                    <Grid Grid.Row="1" Margin="0, 24, 0, 0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBox x:Name="AccountRegTB"
                                      Grid.Row="0"
                                      Width="280"
                                      Height="Auto"
                                      FontSize="16"
                                      HorizontalAlignment="Left"
                                      PlaceholderText="请设置账号"/>
-                                    <PasswordBox x:Name="PasswordRegPB"
+                                        <PasswordBox x:Name="PasswordRegPB"
                                          Grid.Row="1"
                                          Width="280"
                                          Height="Auto"
@@ -146,7 +164,7 @@
                                          PlaceholderText="请设置密码"
                                          HorizontalAlignment="Left"
                                          Margin="0, 24, 0, 0"/>
-                                    <Button x:Name="RegisterBT"
+                                        <Button x:Name="RegisterBT"
                                             Grid.Row="3"
                                             Grid.Column="0"
                                             Width="280"
@@ -159,12 +177,15 @@
                                             Foreground="White"
                                             Margin="0, 36, 0, 24"
                                             Click="RegisterBT_Click"/>
-                                </Grid>
-                            </PivotItem>
-                        </Pivot>
+                                    </Grid>
+                                </PivotItem>
+                            </Pivot>
+                        </Grid>
                     </Grid>
                 </Grid>
+                    </UserControl>
             </Grid>
         </Grid>
+
     </Grid>
 </Page>

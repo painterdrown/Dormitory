@@ -14,8 +14,13 @@ namespace Dormitory.ViewModels
         public NewObservableCollection<Models.DutyItem> dutyitems = new NewObservableCollection<Models.DutyItem>();
         public NewObservableCollection<Models.CountItem> countitems = new NewObservableCollection<Models.CountItem>();
         public NewObservableCollection<Models.MemberItem> memberitems = new NewObservableCollection<Models.MemberItem>();
+        public bool[] state;
         public async void init(string did)
         {
+            state = new bool[50];
+            for (int i = 0; i < 50; i++) {
+                state[i] = false;
+            }
             var result = await HttpUtil.GetDuties(did);
             if ((bool)result["ok"])
             {
@@ -25,7 +30,7 @@ namespace Dormitory.ViewModels
                 for (var i = 0; i < duties.Count; i++)
                 {
                     DutyItem D = new DutyItem();
-                    D.cno = (int)duties[i]["_v"];
+                    D.cno = (int)duties[i]["cno"];
                     D.name = (string)duties[i]["name"];
                     D.time = (DateTime)duties[i]["time"];
                     D.note = (string)duties[i]["note"];

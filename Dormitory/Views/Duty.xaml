@@ -11,6 +11,7 @@
     <Page.Resources>
         <con:ImageToUri x:Key="imageConverter" />
         <con:DateToString x:Key="DateToString" />
+        <con:DateToString x:Key="checkboxTo" />
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar  RequestedTheme="Dark" Background="#75C4FF">
@@ -173,7 +174,7 @@
                                                     <TextBlock Text="{x:Bind name}" Grid.Column="1" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                                 </Border>
                                                 <Border BorderThickness="0, 0, 0, 1" BorderBrush="#F2F6FB" Grid.Column="2">
-                                                    <CheckBox Grid.Column="3" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                    <CheckBox Grid.Column="3" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="checked_click" Unchecked="unchecked_click"/>
                                                 </Border>
                                                 
                                                 

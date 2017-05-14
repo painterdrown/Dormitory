@@ -48,7 +48,7 @@ namespace Dormitory.Views
                         string name = (string)checkbok[i]["name"];
                         string d = checkbok[i]["time"].ToString();
                         long hi = long.Parse(d);
-                        string cno = checkbok[i]["_id"].ToString();
+                        string cno = checkbok[i]["cno"].ToString();
                         DateTime datetim = new DateTime(hi);
                         string io = (string)checkbok[i]["io"];
                         bool state = (bool)checkbok[i]["state"];
@@ -125,8 +125,9 @@ namespace Dormitory.Views
                 float left = float.Parse(leftMoney.Text.Substring(1));
                 left += money;
                 ck = new CheckbookItem(number.Text, name, date.Date.DateTime, false, tip.Text);
-                await HttpUtil.AddCheckbookItem(App.account, ck);
-                ViewModel.AddCheckbookItem(ck.CNO, ck.COST, ck.NAME, ck.DATETIME, false, "", ck.NOTE);
+                var result = await HttpUtil.AddCheckbookItem(App.account, ck);
+                int cno = (int)result["cno"];
+                ViewModel.AddCheckbookItem(cno.ToString(), ck.COST, ck.NAME, ck.DATETIME, false, "", ck.NOTE);
                 leftMoney.Text = "￥" + left.ToString();
                 str = "￥" + left.ToString();
                 leftMoney.Text = str;
@@ -139,7 +140,7 @@ namespace Dormitory.Views
                 //ViewModel.SelectedItem = (Models.CheckbookItem)(e.ClickedItem);
                 TextBlock tb = (TextBlock)ComboBox.SelectedItem;
                 string name = tb.Text;
-                await HttpUtil.EditCheckbookItem(App.account, new CheckbookItem(ViewModel.SelectedItem.CNO, ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
+                await HttpUtil.EditCheckbookItem(App.account, int.Parse(ViewModel.SelectedItem.CNO),new CheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, date.Date.DateTime, ViewModel.SelectedItem.STATE, tip.Text));
                 ViewModel.updateCheckbookItem(number.Text, name, date.Date.DateTime, ViewModel.SelectedItem.STATE, tip.Text);
                 confirmButton.Content = "确定";
                 number.Text = "";
@@ -187,7 +188,7 @@ namespace Dormitory.Views
             if (ViewModel.SelectedItem != null)
             {
                 ViewModel.SelectedItem.STATE = true;
-                await HttpUtil.EditCheckbookItem(App.account, new CheckbookItem(ViewModel.SelectedItem.CNO, ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
+                await HttpUtil.EditCheckbookItem(App.account, int.Parse(ViewModel.SelectedItem.CNO), new CheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
                 ViewModel.updateCheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE);
             }
         }
@@ -198,7 +199,7 @@ namespace Dormitory.Views
             if (ViewModel.SelectedItem != null)
             {
                 ViewModel.SelectedItem.STATE = false;
-                await HttpUtil.EditCheckbookItem(App.account, new CheckbookItem(ViewModel.SelectedItem.CNO, ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
+                await HttpUtil.EditCheckbookItem(App.account, int.Parse(ViewModel.SelectedItem.CNO), new CheckbookItem(ViewModel.SelectedItem.CNO, ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE));
                 ViewModel.updateCheckbookItem(ViewModel.SelectedItem.COST, ViewModel.SelectedItem.NAME, ViewModel.SelectedItem.DATETIME, ViewModel.SelectedItem.STATE, ViewModel.SelectedItem.NOTE);
             }
         }

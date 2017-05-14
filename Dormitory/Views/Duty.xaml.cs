@@ -81,6 +81,20 @@ namespace Dormitory.Views
                     break;
                 }
             }
+            while (ViewModel.state[no] == false)
+            {
+                ro = new Random();
+                random = ro.NextDouble();
+                no = 0;
+                for (int i = 0; i < ViewModel.countitems.Count; i++)
+                {
+                    if (random < pro[i])
+                    {
+                        no = i;
+                        break;
+                    }
+                }
+            }
             DateTime date = DateTime.Now;
             string note = Note.Text;
             var result = await HttpUtil.GetMemberNames(App.account);  //狗哥把这段改为直接从mem_List拿名字
@@ -90,6 +104,33 @@ namespace Dormitory.Views
             await HttpUtil.AddDuty(App.account, D);
 
         }
+
+        private void checked_click(object sender, RoutedEventArgs e)
+        {
+            var currentitem = ((CheckBox)e.OriginalSource).DataContext as MemberItem;
+            var currnetname = currentitem.name;
+            for(var i = 0; i < ViewModel.memberitems.Count; i++)
+            {
+                if (ViewModel.memberitems[i].name == currnetname)
+                {
+                    ViewModel.state[i] = true;
+                }
+            }
+        }
+
+        private void unchecked_click(object sender, RoutedEventArgs e)
+        {
+            var currentitem = ((CheckBox)e.OriginalSource).DataContext as MemberItem;
+            var currnetname = currentitem.name;
+            for (var i = 0; i < ViewModel.memberitems.Count; i++)
+            {
+                if (ViewModel.memberitems[i].name == currnetname)
+                {
+                    ViewModel.state[i] = false;
+                }
+            }
+        }
+
     }
 
    

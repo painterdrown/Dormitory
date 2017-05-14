@@ -101,7 +101,7 @@ namespace Dormitory.Views
             MItem.location = province.Text + "_" + area.Text;
             MItem.random_num = 0;
             //ViewModel.addMemberItem(userFace.Source, username.Text, BirthDay.Date.DateTime, province.Text + "_" + area.Text, 0);
-            await HttpUtil.AddMember(App.account, new MemberItem(u, username.Text, BirthDay.Date.DateTime, province.Text + "_" + area.Text, 0), false);
+            await HttpUtil.AddMember(App.account, new MemberItem(u, username.Text, BirthDay.Date.DateTime, province.Text + "_" + area.Text, 1), false);
             Frame.Navigate(typeof(Info), MItem);
         }
 

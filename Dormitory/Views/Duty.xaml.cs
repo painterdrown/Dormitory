@@ -101,7 +101,7 @@ namespace Dormitory.Views
             string name = (string)result["names"][no];
             DutyItem D = new DutyItem(no, name, date, note);
             ViewModel.dutyitems.Add(D);
-            await HttpUtil.AddDuty(App.account, D);
+            await HttpUtil.AddDuty(App.account, no, D);
 
         }
 

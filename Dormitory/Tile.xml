@@ -3,16 +3,16 @@
   <visual>
     <binding template="TileSmall">
       <text>Content</text>
-      <image src="Assets\Images\default.png" placement="background"/>
+      <image src="Assets\tile1.jpg" placement="background"/>
     </binding>
     <binding template="TileMedium">
       <text>Content</text>
-      <image src="Assets\Images\default.png" placement="background"/>
+      <image src="Assets\tile2.jpg" placement="background"/>
     </binding>
     <binding template="TileWide">
       <text>Content</text>
       <text hint-style="captionSubtle">Time</text>
-      <image src="Assets\Images\default.png" placement="background"/>
+      <image src="Assets\tile3.jpg" placement="background"/>
     </binding>
   </visual>
 </tile>

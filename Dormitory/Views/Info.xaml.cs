@@ -5,28 +5,21 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-// “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
-
 namespace Dormitory.Views
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
     public sealed partial class Info : Page
     {
-        public Info()
-        {
-            ViewModel = new InfoViewModel();
-            ViewModel.init(App.account);
-            this.InitializeComponent();
-        }
         JournalItem JItem;
-
         MemberItem MItem;
         InfoViewModel ViewModel;
-        ViewModels.MemberViewModel ViewModel_1 { get; set; }
+        MemberViewModel ViewModel_1 { get; set; }
 
-
+        public Info()
+        {
+            this.InitializeComponent();
+            ViewModel = new InfoViewModel();
+            ViewModel.init(App.account);
+        }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -45,7 +38,8 @@ namespace Dormitory.Views
                     {
                         //database add
                         await HttpUtil.AddJournal(App.account, JItem.content, JItem.ImageChange);
-                        ViewModel.journalitems.Add(JItem);
+
+                        ViewModel.add(JItem);
                         return;
                     }
                     else if (JItem.message == "update")
@@ -69,6 +63,7 @@ namespace Dormitory.Views
             }
             else return;
         }
+
         private void selectPhoto(object sender, RoutedEventArgs e)
         {
 
@@ -90,16 +85,19 @@ namespace Dormitory.Views
 
             Frame.Navigate(typeof(Checkbook), null);
         }
+
         private void AddJournalButton_Click(object sender, RoutedEventArgs e)
         {
             JournalItem j = null;
             Frame.Navigate(typeof(WriteJournal), j);
         }
+
         private void JournalItemClick(object sender, ItemClickEventArgs e)
         {
             JournalItem j = (JournalItem)(e.ClickedItem);
             Frame.Navigate(typeof(WriteJournal), j);
         }
+
         private void DutyAppButton_Click(object sender, RoutedEventArgs e)
         {
 

@@ -1,6 +1,11 @@
 ﻿using Dormitory.Models;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using Windows.Data.Xml.Dom;
+using Windows.UI.Notifications;
 using Windows.UI.Popups;
 
 namespace Dormitory.ViewModels
@@ -17,6 +22,7 @@ namespace Dormitory.ViewModels
         public InfoViewModel()
         {
         }
+
         public async void init(string did)
         {
             var result = await HttpUtil.GetJournals(did);
@@ -31,6 +37,8 @@ namespace Dormitory.ViewModels
                     J.pic = new System.Uri("http://www.sysu7s.cn:3000/api/dormitory/get-journal-image/" + J.id);
                     journalitems.Add(J);
                 }
+
+                UpdateTileForAllItems();
             }
             else
             {
@@ -55,6 +63,11 @@ namespace Dormitory.ViewModels
             }
         }
 
+        public void add(JournalItem j)
+        {
+            journalitems.Add(j);
+            UpdateTileForOneItem(j);
+        }
         public void update(JournalItem j)
         {
             for(var i = 0; i < journalitems.Count; i++)
@@ -75,6 +88,56 @@ namespace Dormitory.ViewModels
                     journalitems.Remove(item);
                 }
             }
+        }
+
+        private void UpdateTileForAllItems()
+        {
+            var updator = TileUpdateManager.CreateTileUpdaterForApplication();
+            updator.Clear();
+            // 启动更新队列轮询
+            updator.EnableNotificationQueue(true);
+
+            // 将每一个TodoItem都添加到更新队列
+            foreach (var item in Journalitems)
+            {
+                XmlDocument tile = new XmlDocument();
+                tile.LoadXml(File.ReadAllText("Tile.xml"));
+                XmlNodeList textNodes = tile.GetElementsByTagName("text");
+
+                int i = 0;
+                // TileSmall
+                (textNodes[i++] as XmlElement).InnerText = item.content;
+                // TileMedium
+                (textNodes[i++] as XmlElement).InnerText = item.content;
+                // TileWide
+                (textNodes[i++] as XmlElement).InnerText = item.content;
+                (textNodes[i++] as XmlElement).InnerText = item.date.ToString();
+
+                TileNotification notification = new TileNotification(tile);
+                updator.Update(notification);
+            }
+        }
+
+        private void UpdateTileForOneItem(JournalItem item)
+        {
+            var updator = TileUpdateManager.CreateTileUpdaterForApplication();
+
+            XmlDocument tile = new XmlDocument();
+            tile.LoadXml(File.ReadAllText("Tile.xml"));
+            XmlNodeList textNodes = tile.GetElementsByTagName("text");
+
+            int i = 0;
+            // TileSmall
+            (textNodes[i++] as XmlElement).InnerText = item.content;
+            // TileMedium
+            (textNodes[i++] as XmlElement).InnerText = item.content;
+            // TileWide
+            (textNodes[i++] as XmlElement).InnerText = item.content;
+            (textNodes[i++] as XmlElement).InnerText = item.date.ToString();
+
+            TileNotification notification = new TileNotification(tile);
+            updator.Update(notification);
+            updator.EnableNotificationQueue(true);
         }
     }
 }

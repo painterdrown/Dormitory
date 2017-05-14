@@ -91,6 +91,9 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\background_login.jpg" />
     <Content Include="Assets\fonts\方正清刻本悦宋简体.TTF" />
+    <Content Include="Assets\tile1.jpg" />
+    <Content Include="Assets\tile2.jpg" />
+    <Content Include="Assets\tile3.jpg" />
     <Content Include="Tile.xml" />
     <None Include="project.json" />
   </ItemGroup>
@@ -104,6 +107,7 @@
     <Compile Include="Models\BindableBase.cs" />
     <Compile Include="Models\CountItem.cs" />
     <Compile Include="Models\HttpUtil.cs" />
+    <Compile Include="Models\JournalItem.cs" />
     <Compile Include="Models\NewObservableCollection.cs" />
     <Compile Include="Models\Temp.cs" />
     <Compile Include="ViewModels\InfoViewModel.cs" />
@@ -121,7 +125,6 @@
     </Compile>
     <Compile Include="Models\CheckbookItem.cs" />
     <Compile Include="Models\DutyItem.cs" />
-    <Compile Include="Models\JournalItem.cs" />
     <Compile Include="Models\MemberItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Setting.xaml.cs">
@@ -129,7 +132,6 @@
     </Compile>
     <Compile Include="ViewModels\CheckbookViewModel.cs" />
     <Compile Include="ViewModels\DutyViewModel.cs" />
-    <Compile Include="ViewModels\JournalViewModel.cs" />
     <Compile Include="ViewModels\MemberViewModel.cs" />
     <Compile Include="Views\WriteJournal.xaml.cs">
       <DependentUpon>WriteJournal.xaml</DependentUpon>

@@ -102,7 +102,7 @@ namespace Dormitory.Views
         }
         private void DutyAppButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(Duty), "");
         }
 
         private void saveContext(object sender, RoutedEventArgs e)

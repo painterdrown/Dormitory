@@ -55,12 +55,12 @@ namespace Dormitory.Views
             double[] pro = new double[ViewModel.countitems.Count];
             for (int i = 0; i < ViewModel.countitems.Count; i++)
             {
-                double a = 1 / ViewModel.countitems[i].count;
+                double a = 1.0/ (double)ViewModel.countitems[i].count;
                 TotalCount += a;
             }
             for (int i = 0; i < ViewModel.countitems.Count; i++)
             {
-                double a = 1 / ViewModel.countitems[i].count;
+                double a = 1.0 / (double)ViewModel.countitems[i].count;
                 if (i == 0)
                 {
                     pro[i] = a / TotalCount;

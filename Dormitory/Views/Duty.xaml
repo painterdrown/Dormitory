@@ -90,7 +90,7 @@
                     <Image x:Name="pict"
                            Grid.Row="1"
                            Grid.Column="0"
-                           Source="../Assets/default.jpg"
+                           Source="../Assets/random.jpg"
                            Width="200" 
                            Height="200" 
                            Stretch="UniformToFill"

@@ -52,6 +52,7 @@
                 <StackPanel>
                     <Image x:Name="photo" 
                            Source="../Assets/default.jpg"
+                           Stretch="UniformToFill"
                            Width="350" 
                            Height="180"
                            Margin="8" />
@@ -63,6 +64,7 @@
                                       Click="selectPhoto" />
                     </RelativePanel>
                     <TextBox x:Name="Details"
+                             TextWrapping="Wrap"
                              Width="350"
                              Height="160"
                              Margin="0,12,0,0"

@@ -203,7 +203,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Grid.Column="0" Margin="8" Height="80" Width="80" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{x:Bind pic, Converter={StaticResource imageConverter}}"/>
-                                        <TextBlock Grid.Column="1" Text="{x:Bind content}" Foreground="#F2F6FB" FontSize="16" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" Text="{x:Bind content}" Foreground="#F2F6FB" FontSize="16" TextWrapping="Wrap" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                                     </Grid>
                                 </DataTemplate>

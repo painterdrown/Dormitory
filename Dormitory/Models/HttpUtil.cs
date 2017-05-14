@@ -182,11 +182,11 @@ namespace Dormitory.Models
             return await PostForJObject(param, "/get-checkbook");
         }
 
-        public static async Task<JObject> AddDuty(string did, DutyItem item)
+        public static async Task<JObject> AddDuty(string did, int mno, DutyItem item)
         {
             var param = new JObject();
             param["did"] = did;
-            param["cno"] = item.cno;
+            param["mno"] = mno;
             param["name"] = item.name;
             param["time"] = item.time.Ticks;
             param["note"] = item.note;

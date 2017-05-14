@@ -13,7 +13,7 @@ namespace Dormitory.Models
         public string name;
         public DateTime time;
         public string note;
-
+        public DutyItem() { }
         public DutyItem(int cno, string name, DateTime time, string note)
         {
             this.cno = cno;

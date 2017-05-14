@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -59,6 +60,11 @@ namespace Dormitory.Views
                     bitmapImage.DecodePixelWidth = 353;
                     await bitmapImage.SetSourceAsync(fileStream);
                     userFace.Source = bitmapImage;
+
+                    var fileToSave = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("temp.png", CreationCollisionOption.ReplaceExisting);
+                    var stream = await file.OpenReadAsync();
+                    var bytes = await Temp.GetBytesFromStream(stream);
+                    await FileIO.WriteBytesAsync(fileToSave, bytes);
                 }
             }
         }
@@ -78,18 +84,24 @@ namespace Dormitory.Views
 
         }
 
-        private void saveContext(object sender, RoutedEventArgs e)
+        private async void saveContext(object sender, RoutedEventArgs e)
         {
             if (username.Text == "" || province.Text == "" || area.Text == "")
             {
                 var i = new MessageDialog("内容不能为空!").ShowAsync();
             }
-            MItem.pic = userFace.Source;
+            var u = (userFace.Source as BitmapImage).UriSource;
+            if (u == null)
+            {
+                u = new Uri("ms-appdata:///temp/temp.png");
+            }
+            MItem.pic = u;
             MItem.name = username.Text;
             MItem.birth = BirthDay.Date.DateTime;
             MItem.location = province.Text + "_" + area.Text;
             MItem.random_num = 0;
             //ViewModel.addMemberItem(userFace.Source, username.Text, BirthDay.Date.DateTime, province.Text + "_" + area.Text, 0);
+            await HttpUtil.AddMember(App.account, new MemberItem(u, username.Text, BirthDay.Date.DateTime, province.Text + "_" + area.Text, 0), false);
             Frame.Navigate(typeof(Info), MItem);
         }
 

@@ -30,9 +30,10 @@ namespace Dormitory.ViewModels
                 for (var i = 0; i < duties.Count; i++)
                 {
                     DutyItem D = new DutyItem();
-                    D.cno = (int)duties[i]["cno"];
+                    D.cno = (int)duties[i]["dno"];
                     D.name = (string)duties[i]["name"];
-                    D.time = (DateTime)duties[i]["time"];
+                    long second = (long)duties[i]["time"];
+                    D.time = new DateTime(second);
                     D.note = (string)duties[i]["note"];
                     dutyitems.Add(D);
                 }

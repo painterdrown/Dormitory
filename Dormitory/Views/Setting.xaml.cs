@@ -1,40 +1,30 @@
 ﻿using Dormitory.Models;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-// “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
-
 namespace Dormitory.Views
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
     public sealed partial class Setting : Page
     {
+        MemberItem MItem;
+
         public Setting()
         {
             this.InitializeComponent();
         }
-        MemberItem MItem;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                AppViewBackButtonVisibility.Visible;
+
             MItem = ((MemberItem)e.Parameter);
             if (MItem == null)
             {
@@ -69,21 +59,6 @@ namespace Dormitory.Views
             }
         }
 
-        private void HomeAppButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CheckAppButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DutyAppButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private async void saveContext(object sender, RoutedEventArgs e)
         {
             if (username.Text == "" || province.Text == "" || area.Text == "")
@@ -110,6 +85,21 @@ namespace Dormitory.Views
             username.Text = "";
             BirthDay.Date = DateTime.Now;
             province.Text = area.Text = "";
+        }
+
+        private void HomeAppButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Info), null);
+        }
+
+        private void CheckAppButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Checkbook));
+        }
+
+        private void DutyAppButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Duty));
         }
     }
 }

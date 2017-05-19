@@ -9,27 +9,24 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-// “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
-
 namespace Dormitory.Views
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
     public sealed partial class WriteJournal : Page
     {
+        JournalItem jItem;
 
         public WriteJournal()
         {
             this.InitializeComponent();
             SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
         }
-        JournalItem jItem;
+
         private void App_BackRequested(object sender, BackRequestedEventArgs e)
         {
             jItem = null;
             Frame.Navigate(typeof(Info), jItem);
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             //返回的条件设置
@@ -52,7 +49,6 @@ namespace Dormitory.Views
 
                 createButton.Content = "发布";
                 cancelButton.Content = "清空";
-                var i = new MessageDialog("欢迎发布日志").ShowAsync();
             }
             else
             {
@@ -63,7 +59,6 @@ namespace Dormitory.Views
 
                 cancelButton.Click -= ClearButton_Clicked;
                 cancelButton.Click += DeleteButton_Clicked;
-                var i = new MessageDialog("欢迎修改你的日志").ShowAsync();
 
                 Details.Text = jItem.content;
                 photo.Source = new BitmapImage(jItem.pic);
@@ -116,6 +111,7 @@ namespace Dormitory.Views
                 var i = new MessageDialog("select picture operation cancelled!").ShowAsync();
             }
         }
+
         private void CreateButton_Clicked(object sender, RoutedEventArgs e)
         {
             if(Details.Text == "")
@@ -136,6 +132,7 @@ namespace Dormitory.Views
                 Frame.Navigate(typeof(Info), jItem);
             }
         }
+
         private void UpdateButton_Clicked(object sender, RoutedEventArgs e)
         {
             if (Details.Text == "")
@@ -157,6 +154,7 @@ namespace Dormitory.Views
                 Frame.Navigate(typeof(Info), jItem);
             }
         }
+
         private void DeleteButton_Clicked(object sender, RoutedEventArgs e)
         {
             jItem.message = "delete";
@@ -172,6 +170,5 @@ namespace Dormitory.Views
             bitmapImage.UriSource = new Uri(image.BaseUri, "Assets/default.jpg");
             photo.Source = bitmapImage;
         }
-
     }
 }
